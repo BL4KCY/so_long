@@ -6,13 +6,13 @@
 #    By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/01 10:12:32 by melfersi          #+#    #+#              #
-#    Updated: 2024/01/18 11:41:09 by melfersi         ###   ########.fr        #
+#    Updated: 2024/02/01 16:24:09 by melfersi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # command and their flags
 RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIE
 CC = cc
 AR = ar -crs
 INCLUDES = includes

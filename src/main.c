@@ -33,7 +33,7 @@ int	keyboard(int keycode, t_mlx *param)
 		if ((y + h) < WIDTH && ((2 * h) + y) <= HIGHT)
 			y += h;
 	mlx_clear_window(param->mlx, param->win);
-	mlx_put_image_to_window(param->mlx, param->win, param->img, x, y);
+	mlx_put_image_to_window(param->mlx, param->win, param->img, (*param).x, (*param).y);
 	mlx_destroy_image(param->mlx, param->img);
 	return (0);
 }
@@ -45,8 +45,6 @@ int	mouse(int mousekey, t_mlx *param)
 }
 void	init_game(t_mlx *server)
 {
-	server->x = 0;
-	server->y = 0;
 	server->width = ft_strlen(server->map->content) * ADD;
 	server->hight = ft_lstsize(server->map) * ADD;
 }
@@ -65,7 +63,7 @@ int	main(int argc, char **argv)
 	server.mlx = mlx_init();
 	if (server.mlx == NULL)
 		return (EXIT_FAILURE);
-	server.win = mlx_new_window(server.mlx, WIDTH, HIGHT, "so_long");
+	server.win = mlx_new_window(server.mlx, server.width, server.hight, "so_long");
 	if (server.win == NULL)
 	{
 		mlx_destroy_display(server.mlx);

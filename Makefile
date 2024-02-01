@@ -14,7 +14,7 @@ INCLUDES = includes
 LIB_INCLUDES = libft/includes
 
 #______mandatory files______#
-FILES = main.c parse_map.c
+FILES = main.c prase_map.c
 
 #_____bonus files______#
 #FILES_BONUS =
@@ -68,7 +68,7 @@ $(LIB)/%.a:
 clean:
 	$(RM) $(OBJ_DIR)
 	$(RM) $(BNS_OBJ_DIR)
-# $(MAKE) -C $(LIB) fclean
+	$(MAKE) -C $(LIB) fclean
 
 fclean: clean
 	$(RM) $(NAME)

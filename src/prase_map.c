@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/01 09:52:35 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:57:42 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ bool	check_line(char *line, int len, bool first, bool last)
 t_list	*map_parse(char *path)
 {
 	int		fd;
-	int		len;
+	size_t	len;
 	char	*line;
 	char	*next_line;
 	t_list	*map;
@@ -86,23 +86,4 @@ t_list	*map_parse(char *path)
 	return (map);
 }
 
-
-int main(int ac, char **av)
-{
-	t_list	*map;
-	if (ac != 2)
-	{
-		ft_printf("Error\n");
-		return (1);
-	}
-	map = map_parse(av[1]);
-	t_list *tmp = map;
-	while (map)
-	{
-		ft_printf("%s\n", (char *)map->content);
-		map = map->next;
-	}
-	ft_lstclear(&tmp, free);
-	return (0);
-}
 
