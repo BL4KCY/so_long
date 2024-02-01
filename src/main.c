@@ -43,19 +43,25 @@ int	mouse(int mousekey, t_mlx *param)
 	printf("the key number {%d} in mouse pressed!\n",mousekey);
 	return (param - param);
 }
+void	init_game(t_mlx *server)
+{
+	server->x = 0;
+	server->y = 0;
+	server->width = ft_strlen(server->map->content) * ADD;
+	server->hight = ft_lstsize(server->map) * ADD;
+}
 
 int	main(int argc, char **argv)
 {
 	t_mlx	server;
-	t_list	*map;
 
 	if (argc != 2)
 	{
 		ft_putendl_fd("Error\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	map = map_parse(argv[1]);
-	get_witdh_and_hight(map);
+	server.map = map_parse(argv[1]);
+	init_game(&server);
 	server.mlx = mlx_init();
 	if (server.mlx == NULL)
 		return (EXIT_FAILURE);
