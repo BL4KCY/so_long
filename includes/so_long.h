@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/01 11:41:11 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:44:41 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct
 	void	*mlx;
 	void	*win;
 	void	*img;
+	char	pathxpm[100];
 	t_list	*map;
 	int		width;
 	int		hight;
