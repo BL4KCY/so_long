@@ -14,7 +14,7 @@ INCLUDES = includes
 LIB_INCLUDES = libft/includes
 
 #______mandatory files______#
-FILES = main.c
+FILES = main.c parse_map.c
 
 #_____bonus files______#
 #FILES_BONUS =
@@ -36,8 +36,8 @@ LIB = libft
 
 
 
-$(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -I$(INCLUDES) -I$(LIB_INCLUDES) -lmlx -lXext -lX11 -o $@ -w
+$(NAME): $(OBJECTS) $(LIB)/libft.a
+	$(CC) $(CFLAGS) $^ -I$(INCLUDES) -I$(LIB_INCLUDES) -lmlx -lXext -lX11 -o $@
 
 bonus:$(BONUS_NAME)
 
@@ -51,7 +51,7 @@ all: $(NAME) $(BONUS_NAME)
 # impicit rule for mandatory
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -I$(INCLUDES) -I$(LIB_INCLUDES) -lmlx -lXext -lX11 -o $@ -w
+	$(CC) $(CFLAGS) -c $< -I$(INCLUDES) -I$(LIB_INCLUDES) -lmlx -lXext -lX11 -o $@
 
 # impicit rule for bonus
 $(BNS_OBJ_DIR)/%.o: $(BNS_DIR)/%.c
@@ -75,3 +75,5 @@ fclean: clean
 	$(RM) $(BONUS_NAME)
 
 .PHONY: clean bonus
+
+

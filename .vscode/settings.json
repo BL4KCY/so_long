@@ -1,10 +1,12 @@
 {
-	"C_Cpp.errorSquiggles": "enabled",
+	"C_Cpp.errorSquiggles": "disabled",
 	"files.associations": {
 		"mlx.h": "c",
 		"so_long.h": "c",
 		"stdio.h": "c",
 		"keysym.h": "c",
-		"keysymdef.h": "c"
+		"keysymdef.h": "c",
+		"string.h": "c",
+		"errno.h": "c"
 	}
 }

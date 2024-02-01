@@ -1,11 +1,17 @@
 #include "so_long.h"
 // #include <X11/keysym.h>
-# define HIGHT 720
-# define WIDTH 480
+# define HIGHT 800
+# define WIDTH 800
+# define ADD 50
 #include <stdio.h>
+#include <unistd.h>
 
 int	keyboard(int keycode, t_mlx *param)
 {
+	static int	x;
+	static int	y;
+	int	w,h;
+	param->img = mlx_xpm_file_to_image(param->mlx, "img/packmanpng.xpm", &w, &h);
 	if (keycode == ESC)
 	{
 		printf("key number {%d} (ESC) pressed!",keycode);
@@ -14,16 +20,21 @@ int	keyboard(int keycode, t_mlx *param)
 		free(param->mlx);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 49)
-	{
-		mlx_string_put(param->mlx, param->win, 50, 50, 0x00F24810, "MUSTAPHA");
-	}
-	if (keycode == 50)
-	{
-		mlx_string_put(param->mlx, param->win, 150, 50, 0x00024810, "OUSSAMA");
-	}
-	else
-		printf("key number {%d} pressed!\n", keycode);
+	if (keycode == W)
+		if ((y - h) >= 0)
+			y -= h;
+	if (keycode == A)
+		if ((x - w) >= 0)
+			x -= w;
+	if (keycode == D)
+		if ((x + w) < HIGHT && ((2 * w) + x) <= WIDTH)
+			x += w;
+	if (keycode == S)
+		if ((y + h) < WIDTH && ((2 * h) + y) <= HIGHT)
+			y += h;
+	mlx_clear_window(param->mlx, param->win);
+	mlx_put_image_to_window(param->mlx, param->win, param->img, x, y);
+	mlx_destroy_image(param->mlx, param->img);
 	return (0);
 }
 
@@ -33,14 +44,22 @@ int	mouse(int mousekey, t_mlx *param)
 	return (param - param);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_mlx	server;
+	t_list	*map;
 
+	if (argc != 2)
+	{
+		ft_putendl_fd("Error\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
+	map = map_parse(argv[1]);
+	get_witdh_and_hight(map);
 	server.mlx = mlx_init();
 	if (server.mlx == NULL)
 		return (EXIT_FAILURE);
-	server.win = mlx_new_window(server.mlx, HIGHT, WIDTH, "so_long");
+	server.win = mlx_new_window(server.mlx, WIDTH, HIGHT, "so_long");
 	if (server.win == NULL)
 	{
 		mlx_destroy_display(server.mlx);

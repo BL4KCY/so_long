@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/01/26 16:11:30 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/01 09:51:49 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 # define SO_LONG_H
 # include "mlx.h"
 # include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
+# include <errno.h>
+# include "libft.h"
 
+// macros for mlx functions
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
 # define ON_MOUSEDOWN 4
@@ -22,7 +27,7 @@
 # define ON_MOUSEMOVE 6
 # define ON_EXPOSE 12
 # define ON_DESTROY 17
-
+// macros for mlx hooks
 # define NoEventMask 0L
 # define KeyPressMask (1L<<0)
 # define KeyReleaseMask (1L<<1)
@@ -49,10 +54,16 @@
 # define PropertyChangeMask (1L<<22)
 # define ColormapChangeMask (1L<<23)
 # define OwnerGrabButtonMask (1L<<24)
-
+// macros for mlx keycodes
 # define MALLOC_ERROR 1
 # define ESC 65307
+# define BACK_SPACE 65288
+# define W 119
+# define S 115
+# define A 97
+# define D 100
 
+// struct for mlx image
 typedef struct
 {
 	void	*img;
@@ -61,14 +72,19 @@ typedef struct
 	int		line_length;
 	int		endian;
 }	t_img;
-
-
-
+// struct for mlx data
 typedef struct
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
 }	t_mlx;
+
+// prototypes
+
+t_list	*map_parse(char *path);
+
+
 
 
 
