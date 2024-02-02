@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/01 21:44:41 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:52:51 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,13 @@
 # define S 115
 # define A 97
 # define D 100
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
+# define ADD 50
 
-// struct for mlx image
-typedef struct
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img;
-// struct for mlx data
+
 typedef struct
 {
 	void	*mlx;
@@ -84,6 +80,7 @@ typedef struct
 	int		hight;
 	int		x;
 	int		y;
+	int		moves;
 }	t_mlx;
 
 // prototypes
