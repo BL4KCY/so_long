@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/02 18:52:51 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/03 08:59:51 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
+# include <stdio.h>
 # include "libft.h"
 
 // macros for mlx functions
@@ -86,10 +87,12 @@ typedef struct
 // prototypes
 
 t_list	*map_parse(char *path);
-
-
-
-
-
-
+void	init_game(t_mlx *server);
+void	increase_moves(t_mlx *param, int keycode);
+void	update_moves(t_mlx *server);
+void	move_player(int keycode, t_mlx *param);
+void	update_player(t_mlx *param);
+int		ft_exit(t_mlx *param);
+int		keyboard(int keycode, t_mlx *param);
+int		render_next_frame(t_mlx *server);
 #endif
