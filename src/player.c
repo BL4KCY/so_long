@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/03 08:51:23 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/03 09:04:06 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void move_player(int keycode, t_mlx *param)
 {
+	increase_moves(param, keycode);
 	if (keycode == W)
 	{
 		if (((*param).y - ADD) >= 0)
@@ -38,7 +39,6 @@ void move_player(int keycode, t_mlx *param)
 			(*param).y += ADD;
 		param->pathxpm[11] = 'd';
 	}
-	increase_moves(param, keycode);
 }
 
 void update_player(t_mlx *param)
