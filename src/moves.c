@@ -6,37 +6,40 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:49:28 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/03 08:51:50 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/04 17:57:09 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void increase_moves(t_mlx *param, int keycode)
+void increase_moves(mlx_t *param, int keycode)
 {
 	if (keycode == W)
 	{
-		if (((*param).y - ADD) >= 0)
+		if (((*param).items.player.x[0] - ADD) >= 0)
 			(*param).moves++;
 	}
 	if (keycode == A)
 	{
-		if (((*param).x - ADD) >= 0)
+		if (((*param).items.player.x[0] - ADD) >= 0)
 			(*param).moves++;
 	}
 	if (keycode == D)
 	{
-		if (((*param).x + ADD) < (*param).width && ((2 * ADD) + (*param).x) <= (*param).width)
+		if (((*param).items.player.x[0] + ADD) < (*param).width &&
+			((2 * ADD) + (*param).items.player.x[0]) <= (*param).width)
 			(*param).moves++;
 	}
 	if (keycode == S)
 	{
-		if (((*param).y + ADD) < (*param).hight && ((2 * ADD) + (*param).y) <= (*param).hight)
+		if (((*param).items.player.y[0] + ADD) < (*param).hight &&
+			((2 * ADD) + (*param).items.player.y[0]) <= (*param).hight)
 			(*param).moves++;
 	}
+	move_player(keycode, param);
 }
 
-void update_moves(t_mlx *server)
+void update_moves(mlx_t *server)
 {
 	char *moves;
 	char str[100];

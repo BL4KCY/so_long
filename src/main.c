@@ -4,13 +4,14 @@
 
 int main(int argc, char **argv)
 {
-	t_mlx server;
+	mlx_t server;
 
 	if (argc != 2)
 	{
 		ft_putendl_fd("Error\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
+	// ft_printf("here\n");
 	server.map = map_parse(argv[1]);
 	init_game(&server);
 	server.mlx = mlx_init();

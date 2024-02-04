@@ -4,7 +4,7 @@
 int main(void)
 {
 	clock_t start, end;
-	long i = 48000000;
+	long i = 4800000;
 	i *= 100;
 	start = clock();
 	while (i--)

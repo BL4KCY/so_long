@@ -6,16 +6,17 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/03 08:59:51 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:07:50 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "mlx.h"
 # include <stdlib.h>
+# include <mlx.h>
 # include <fcntl.h>
 # include <string.h>
+# include <stdbool.h>
 # include <errno.h>
 # include <stdio.h>
 # include "libft.h"
@@ -69,30 +70,54 @@
 # define RIGHT 65363
 # define ADD 50
 
+typedef struct coor_s
+{
+	int		x[1000];
+	int		y[1000];
+	int		len;
+	char	path[100];
+	void	*img;
+}	coor_t;
 
-typedef struct
+typedef struct items_s
+{
+	coor_t	player;
+	coor_t	enemy;
+	coor_t	food;
+	coor_t	empty;
+	coor_t	wall;
+	coor_t	door;
+}	items_t;
+
+typedef struct mlx_s
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
-	char	pathxpm[100];
-	t_list	*map;
 	int		width;
 	int		hight;
-	int		x;
-	int		y;
+	items_t	items;
+	t_list	*map;
 	int		moves;
-}	t_mlx;
+}	mlx_t;
+
+
 
 // prototypes
 
 t_list	*map_parse(char *path);
-void	init_game(t_mlx *server);
-void	increase_moves(t_mlx *param, int keycode);
-void	update_moves(t_mlx *server);
-void	move_player(int keycode, t_mlx *param);
-void	update_player(t_mlx *param);
-int		ft_exit(t_mlx *param);
-int		keyboard(int keycode, t_mlx *param);
-int		render_next_frame(t_mlx *server);
+void	init_game(mlx_t *server);
+void	increase_moves(mlx_t *param, int keycode);
+void	update_moves(mlx_t *server);
+void 	move_player(int keycode, mlx_t *par);
+void	update_player(mlx_t *param);
+int		ft_exit(mlx_t *param);
+int		keyboard(int keycode, mlx_t *param);
+int		render_next_frame(mlx_t *server);
+void	coordinate_init(mlx_t *server);
+void	player_init(coor_t *player, int x, int y);
+void	images_slayer(mlx_t *server);
+void	animation(mlx_t *server);
+void	empty_init(coor_t *empty, int x, int y);
+void	wall_init(coor_t *wall, int x, int y);
+
 #endif

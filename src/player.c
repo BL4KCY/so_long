@@ -6,43 +6,43 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/03 09:04:06 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:35:33 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void move_player(int keycode, t_mlx *param)
+void move_player(int keycode, mlx_t *par)
 {
-	increase_moves(param, keycode);
 	if (keycode == W)
 	{
-		if (((*param).y - ADD) >= 0)
-			(*param).y -= ADD;
-		param->pathxpm[11] = 'u';
+		if (((*par).items.player.y[0] - ADD) >= 0)
+			(*par).items.player.y[0] -= ADD;
+		(*par).items.player.path[16] = 'u';
 	}
 	if (keycode == A)
 	{
-		if (((*param).x - ADD) >= 0)
-			(*param).x -= ADD;
-		param->pathxpm[11] = 'l';
+		if (((*par).items.player.x[0] - ADD) >= 0)
+			(*par).items.player.x[0] -= ADD;
+		(*par).items.player.path[16] = 'l';
+
 	}
 	if (keycode == D)
 	{
-		if (((*param).x + ADD) < (*param).width && ((2 * ADD) + (*param).x) <= (*param).width)
-			(*param).x += ADD;
-		param->pathxpm[11] = 'r';
+		if (((*par).items.player.x[0] + ADD) < (*par).width && ((2 * ADD) + (*par).items.player.x[0]) <= (*par).width)
+			(*par).items.player.x[0] += ADD;
+		(*par).items.player.path[16] = 'r';
 	}
 	if (keycode == S)
 	{
-		if (((*param).y + ADD) < (*param).hight && ((2 * ADD) + (*param).y) <= (*param).hight)
-			(*param).y += ADD;
-		param->pathxpm[11] = 'd';
+		if (((*par).items.player.y[0] + ADD) < (*par).hight && ((2 * ADD) + (*par).items.player.y[0]) <= (*par).hight)
+			(*par).items.player.y[0] += ADD;
+		(*par).items.player.path[16] = 'd';
 	}
 }
 
-void update_player(t_mlx *param)
+void update_player(mlx_t *param)
 {
-	mlx_clear_window(param->mlx, param->win);
-	mlx_put_image_to_window(param->mlx, param->win, param->img, (*param).x, (*param).y);
+	mlx_put_image_to_window(param->mlx, param->win, param->items.player.img, param->items.player.x[0], param->items.player.y[0]);
 }
+

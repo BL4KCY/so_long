@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/03 08:59:25 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:03:43 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_exit(t_mlx *param)
+int ft_exit(mlx_t *param)
 {
 	mlx_destroy_window(param->mlx, param->win);
 	mlx_destroy_display(param->mlx);
