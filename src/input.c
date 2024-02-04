@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:47:29 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/04 16:17:59 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/04 22:57:18 by bl4kcy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int keyboard(int keycode, mlx_t *param)
 		printf("key number {%d} (ESC) pressed!", keycode);
 		ft_exit(param);
 	}
-	increase_moves(param, keycode);
+	move_player(keycode, param);
 	return (0);
 }
 

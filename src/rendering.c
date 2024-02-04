@@ -3,37 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/04 19:09:16 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:26:36 by bl4kcy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	delay(size_t ms);
 
 int	render_next_frame(mlx_t *server)
 {
-	static char	c = '0';
-
+	int	x,y;
 	delay(2);
-	server->items.empty.img = mlx_xpm_file_to_image(server->mlx, server->items.empty.path, &server->width, &server->hight);
-	server->items.player.img = mlx_xpm_file_to_image(server->mlx, server->items.player.path, &server->width, &server->hight);
-	server->items.wall.img = mlx_xpm_file_to_image(server->mlx, server->items.wall.path, &server->width, &server->hight);
+	server->items.empty.img = mlx_xpm_file_to_image(server->mlx, server->items.empty.path, &x, &y);
+	server->items.player.img = mlx_xpm_file_to_image(server->mlx, server->items.player.path, &x, &y);
+	server->items.wall.img = mlx_xpm_file_to_image(server->mlx, server->items.wall.path, &x, &y);
+	server->items.door.img = mlx_xpm_file_to_image(server->mlx, server->items.door.path, &x, &y);
+	server->items.food.img = mlx_xpm_file_to_image(server->mlx, server->items.food.path, &x, &y);
 	animation(server);
-	if (c <= '9')
-		server->items.player.path[18] = c;
-	else
-		c = '0';
-	c++;
 	return (0);
 }
 
 void	update_empty(mlx_t *server)
 {
-	// printf("here %d\n", server->items.empty.len);
 	for (int i = 0; i < server->items.empty.len; i++)
 		mlx_put_image_to_window(server->mlx, server->win, server->items.empty.img, server->items.empty.x[i], server->items.empty.y[i]);
 }
@@ -44,24 +38,36 @@ void	update_wall(mlx_t *server)
 		mlx_put_image_to_window(server->mlx, server->win, server->items.wall.img, server->items.wall.x[i], server->items.wall.y[i]);
 }
 
+void	update_door(mlx_t *server)
+{
+	mlx_put_image_to_window(server->mlx, server->win, server->items.door.img, server->items.door.x[0], server->items.door.y[0]);
+}
+
+void	update_food(mlx_t *server)
+{
+	for (int i = 0; i < server->items.food.len; i++)
+		mlx_put_image_to_window(server->mlx, server->win, server->items.food.img, server->items.food.x[i], server->items.food.y[i]);
+}
+
 void animation(mlx_t *server)
 {
 	update_empty(server);
+	update_door(server);
 	update_wall(server);
-	printf("here\n");
-	update_player(server);
+	update_food(server);
 	update_moves(server);
+	update_player(server);
 	images_slayer(server);
 }
 
 void	images_slayer(mlx_t *server)
 {
-	// if (server->items.door.img)
-	// 	mlx_destroy_image(server->mlx, server->items.door.img);
+	if (server->items.door.img)
+		mlx_destroy_image(server->mlx, server->items.door.img);
 	if (server->items.empty.img)
 		mlx_destroy_image(server->mlx, server->items.empty.img);
-	// if (server->items.food.img)
-	// 	mlx_destroy_image(server->mlx, server->items.food.img);
+	if (server->items.food.img)
+		mlx_destroy_image(server->mlx, server->items.food.img);
 	// if (server->items.enemy.img)
 	// 	mlx_destroy_image(server->mlx, server->items.enemy.img);
 	if (server->items.wall.img)
@@ -76,7 +82,7 @@ void	images_slayer(mlx_t *server)
 	server->items.player.img = NULL;
 }
 
-static void delay(size_t ms)
+void delay(size_t ms)
 {
 	ms *= 48000000;
 	while (ms--)

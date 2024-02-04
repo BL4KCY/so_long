@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/04 19:07:50 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:22:12 by bl4kcy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,9 @@ void	images_slayer(mlx_t *server);
 void	animation(mlx_t *server);
 void	empty_init(coor_t *empty, int x, int y);
 void	wall_init(coor_t *wall, int x, int y);
+void	door_init(coor_t *door, int x, int y);
+void	food_init(coor_t *food, int x, int y);
+void	delay(size_t ms);
+
 
 #endif
