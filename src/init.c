@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/05 00:21:58 by bl4kcy           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:28:53 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void init_game(mlx_t *server)
 {
+	int		x,y;
 	coordinate_init(server);
+	server->items.empty.img = mlx_xpm_file_to_image(server->mlx, server->items.empty.path, &x, &y);
+	server->items.wall.img = mlx_xpm_file_to_image(server->mlx, server->items.wall.path, &x, &y);
 	(*server).moves = 0;
 	server->width = ft_strlen(server->map->content) * ADD;
 	server->hight = ft_lstsize(server->map) * ADD;
@@ -36,7 +39,7 @@ void	coordinate_init(mlx_t *server)
 		{
 			if (((char *)map->content)[x] == 'P')
 				player_init(&server->items.player, x * ADD, y * ADD);
-			if (((char *)map->content)[x] != '1')
+			if (((char *)map->content)[x] == '0' || ((char *)map->content)[x] == 'P')
 				empty_init(&server->items.empty, x * ADD, y * ADD);
 			if (((char *)map->content)[x] == '1')
 				wall_init(&server->items.wall, x * ADD, y * ADD);
@@ -83,12 +86,10 @@ void	wall_init(coor_t *wall, int x, int y)
 
 void	door_init(coor_t *door, int x, int y)
 {
-	static int i = 0;
-	if (i == 0)
-		ft_strlcpy(door->path, "textures/door/0.xpm", 100);
-	door->x[i] = x;
-	door->y[i] = y;
-	door->len = (++i);
+	ft_strlcpy(door->path, "textures/door/0.xpm", 100);
+	door->x[0] = x;
+	door->y[0] = y;
+	door->len = 0;
 }
 
 void	food_init(coor_t *food, int x, int y)
@@ -101,3 +102,12 @@ void	food_init(coor_t *food, int x, int y)
 	food->len = (++i);
 }
 
+void	enemy_init(coor_t *enemy, int x, int y)
+{
+	static int i = 0;
+	if (i == 0)
+		ft_strlcpy(enemy->path, "textures/enemy/r/0.xpm", 100);
+	enemy->x[i] = x;
+	enemy->y[i] = y;
+	enemy->len = (++i);
+}

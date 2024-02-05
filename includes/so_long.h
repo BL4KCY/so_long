@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/05 00:22:12 by bl4kcy           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:25:35 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,12 @@ void	wall_init(coor_t *wall, int x, int y);
 void	door_init(coor_t *door, int x, int y);
 void	food_init(coor_t *food, int x, int y);
 void	delay(size_t ms);
+void	enemy_init(coor_t *enemy, int x, int y);
+void	update_enemy(mlx_t *server);
+void	update_food(mlx_t *server);
+void	update_door(mlx_t *server);
+void	update_empty(mlx_t *server);
+void	update_wall(mlx_t *server);
 
 
 #endif
