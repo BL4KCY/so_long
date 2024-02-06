@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/05 18:26:30 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/06 10:51:02 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	update_food(mlx_t *server)
 {
 	static int c = 0;
 
-	if (c <= 20)
+	if (c <= 40)
 	{
-		if (c == 10)
+		if (c == 20)
 			server->items.food.path[14] = '1';
 		if (c == 0)
 			server->items.food.path[14] = '0';

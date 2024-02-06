@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/05 18:25:35 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:05:27 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct mlx_s
 	void	*win;
 	int		width;
 	int		hight;
+	int		score;
 	items_t	items;
 	t_list	*map;
 	int		moves;
@@ -104,7 +105,7 @@ typedef struct mlx_s
 
 // prototypes
 
-t_list	*map_parse(char *path);
+void	map_parse(char *path, mlx_t *par);
 void	init_game(mlx_t *server);
 void	increase_moves(mlx_t *param, int keycode);
 void	update_moves(mlx_t *server);

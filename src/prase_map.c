@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/05 10:24:06 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:19:48 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_fd(char	*path)
 	return (fd);
 }
 
-bool	check_line(char *line, int len, bool first, bool last)
+int	check_line(char *line, int len, bool first, bool last)
 {
 	int	i;
 	static int	object[3];
@@ -50,20 +50,22 @@ bool	check_line(char *line, int len, bool first, bool last)
 			return (false);
 	}
 	if (last)
+	{
 		if (object[0] != 1 || object[1] != 1 || (object[2] == 0 && last)) // check if there is only one P and E and at least one C
 			return (false);
+		return (object[2]);
+	}
 	return (true);
 }
 
-t_list	*map_parse(char *path)
+void	map_parse(char *path, mlx_t *par)
 {
 	int		fd;
 	size_t	len;
 	char	*line;
 	char	*next_line;
-	t_list	*map;
 
-	map = NULL;
+	(*par).map = NULL;
 	fd = get_fd(path);
 	next_line = get_next_line(fd);
 	line = ft_strtrim(next_line, "\n");
@@ -72,18 +74,18 @@ t_list	*map_parse(char *path)
 	while (line)
 	{
 		next_line = get_next_line(fd);
-		if (len != strlen(line) || check_line(line, len, map == NULL, next_line == NULL) == 0)
+		(*par).score = check_line(line, len, (*par).map == NULL, next_line == NULL);
+		if (len != strlen(line) || par->score == 0)
 		{
 			ft_putendl_fd("Error\n", STDERR_FILENO);
-			ft_lstclear(&map, free);
+			ft_lstclear(&((*par).map), free);
 			exit(1);
 		}
-		ft_lstadd_back(&map, ft_lstnew(line));
+		ft_lstadd_back(&((*par).map), ft_lstnew(line));
 		line = ft_strtrim(next_line, "\n");
 		free(next_line);
 	}
 	close(fd);
-	return (map);
 }
 
 

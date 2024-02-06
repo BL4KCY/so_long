@@ -11,7 +11,8 @@ int main(int argc, char **argv)
 		ft_putendl_fd("Error\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	server.map = map_parse(argv[1]);
+	map_parse(argv[1], &server);
+	printf("score: %d\n", server.score);
 	server.mlx = mlx_init();
 	if (server.mlx == NULL)
 		return (EXIT_FAILURE);
