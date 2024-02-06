@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/06 10:51:02 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:33:54 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int	render_next_frame(mlx_t *server)
 {
 	int x, y;
 	delay(2);
+	if ((*server).lock != true)
+		(*server).items.door.path[14] = '1';
 	server->items.player.img = mlx_xpm_file_to_image(server->mlx, server->items.player.path, &x, &y);
 	server->items.door.img = mlx_xpm_file_to_image(server->mlx, server->items.door.path, &x, &y);
 	server->items.food.img = mlx_xpm_file_to_image(server->mlx, server->items.food.path, &x, &y);
 	animation(server);
+	// printf("score  = %d\n", server->score);
 	return (0);
 }
 
@@ -56,7 +59,8 @@ void	update_food(mlx_t *server)
 	else
 		c = 0;
 	for (int i = 0; i < server->items.food.len; i++)
-		mlx_put_image_to_window(server->mlx, server->win, server->items.food.img, server->items.food.x[i], server->items.food.y[i]);
+		if (server->items.food.x[i] != -1)
+			mlx_put_image_to_window(server->mlx, server->win, server->items.food.img, server->items.food.x[i], server->items.food.y[i]);
 }
 
 void	update_enemy(mlx_t *server)

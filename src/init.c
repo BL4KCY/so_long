@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/05 18:28:53 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:04:05 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void init_game(mlx_t *server)
 	server->items.empty.img = mlx_xpm_file_to_image(server->mlx, server->items.empty.path, &x, &y);
 	server->items.wall.img = mlx_xpm_file_to_image(server->mlx, server->items.wall.path, &x, &y);
 	(*server).moves = 0;
+	(*server).lock = 1;
 	server->width = ft_strlen(server->map->content) * ADD;
 	server->hight = ft_lstsize(server->map) * ADD;
 }

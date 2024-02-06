@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/06 12:05:27 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:40:22 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct mlx_s
 	items_t	items;
 	t_list	*map;
 	int		moves;
+	bool	lock;
 }	mlx_t;
 
 
