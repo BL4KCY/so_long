@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/06 13:40:22 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:45:26 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	update_player(mlx_t *param);
 int		ft_exit(mlx_t *param);
 int		keyboard(int keycode, mlx_t *param);
 int		render_next_frame(mlx_t *server);
-void	coordinate_init(mlx_t *server);
+void	coordinate_init(mlx_t *server, t_list *map, int x, int y);
 void	player_init(coor_t *player, int x, int y);
 void	images_slayer(mlx_t *server);
 void	animation(mlx_t *server);
@@ -130,6 +130,7 @@ void	update_food(mlx_t *server);
 void	update_door(mlx_t *server);
 void	update_empty(mlx_t *server);
 void	update_wall(mlx_t *server);
+void	gameover(mlx_t *server);
 
 
 #endif

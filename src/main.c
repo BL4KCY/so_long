@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		free(server.mlx);
 		return (MALLOC_ERROR);
 	}
-	mlx_hook(server.win, ON_KEYUP, KeyReleaseMask, keyboard, &server);
+	mlx_hook(server.win, ON_KEYDOWN, KeyPressMask, keyboard, &server);
 	// mlx_hook(server.win, ON_MOUSEDOWN, ButtonPressMask, mouse, &server);
 	mlx_hook(server.win, ON_DESTROY, KeyPressMask, ft_exit, &server);
 	mlx_loop_hook(server.mlx, render_next_frame, &server);+

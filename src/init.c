@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/06 16:04:05 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 09:39:58 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void init_game(mlx_t *server)
 {
 	int		x,y;
-	coordinate_init(server);
+	coordinate_init(server, server->map, 0, 0);
 	server->items.empty.img = mlx_xpm_file_to_image(server->mlx, server->items.empty.path, &x, &y);
 	server->items.wall.img = mlx_xpm_file_to_image(server->mlx, server->items.wall.path, &x, &y);
 	(*server).moves = 0;
@@ -25,14 +25,8 @@ void init_game(mlx_t *server)
 }
 
 
-void	coordinate_init(mlx_t *server)
+void	coordinate_init(mlx_t *server, t_list *map, int x, int y)
 {
-	int		x;
-	int		y;
-	t_list	*map;
-
-	y = 0;
-	map = server->map;
 	while (map)
 	{
 		x = -1;
@@ -48,6 +42,8 @@ void	coordinate_init(mlx_t *server)
 				door_init(&server->items.door, x * ADD, y * ADD);
 			if (((char *)map->content)[x] == 'C')
 				food_init(&server->items.food, x * ADD, y * ADD);
+			if (((char *)map->content)[x] == 'G')
+				enemy_init(&server->items.enemy, x * ADD, y * ADD);
 		}
 		map = map->next;
 		y++;
@@ -107,7 +103,7 @@ void	enemy_init(coor_t *enemy, int x, int y)
 {
 	static int i = 0;
 	if (i == 0)
-		ft_strlcpy(enemy->path, "textures/enemy/r/0.xpm", 100);
+		ft_strlcpy(enemy->path, "textures/enemy/bat/0.xpm", 100);
 	enemy->x[i] = x;
 	enemy->y[i] = y;
 	enemy->len = (++i);
