@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:49:28 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 13:43:38 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:38:28 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	update_moves(mlx_t *server)
 		mlx_put_image_to_window(server->mlx, server->win,
 			server->items.wall.img, ADD, 0);
 		mlx_string_put(server->mlx, server->win, 0, ADD - 25, 0x00FF00, str);
+		ft_puts(str);
 	}
 	free(moves);
 }

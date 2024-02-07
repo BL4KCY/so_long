@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 11:45:26 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:05:59 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ADD 50
+# define FPS 30
 
 typedef struct coor_s
 {
@@ -106,31 +107,36 @@ typedef struct mlx_s
 
 // prototypes
 
-void	map_parse(char *path, mlx_t *par);
-void	init_game(mlx_t *server);
-void	increase_moves(mlx_t *param, int keycode);
-void	update_moves(mlx_t *server);
-void 	move_player(int keycode, mlx_t *par);
-void	update_player(mlx_t *param);
 int		ft_exit(mlx_t *param);
-int		keyboard(int keycode, mlx_t *param);
-int		render_next_frame(mlx_t *server);
-void	coordinate_init(mlx_t *server, t_list *map, int x, int y);
-void	player_init(coor_t *player, int x, int y);
-void	images_slayer(mlx_t *server);
-void	animation(mlx_t *server);
+void	gameover(mlx_t *server);
 void	empty_init(coor_t *empty, int x, int y);
 void	wall_init(coor_t *wall, int x, int y);
 void	door_init(coor_t *door, int x, int y);
 void	food_init(coor_t *food, int x, int y);
-void	delay(size_t ms);
 void	enemy_init(coor_t *enemy, int x, int y);
-void	update_enemy(mlx_t *server);
-void	update_food(mlx_t *server);
-void	update_door(mlx_t *server);
+void	init_game(mlx_t *server);
+void	coordinate_init(mlx_t *server, t_list *map, int x, int y);
+void	player_init(coor_t *player, int x, int y);
+int		keyboard(int keycode, mlx_t *param);
+void	update_moves(mlx_t *server);
+void	w_key(mlx_t *par);
+void	a_key(mlx_t *par);
+void	d_key(mlx_t *par);
+void	s_key(mlx_t *par);
+void 	move_player(int keycode, mlx_t *par);
+void	check_food(mlx_t *par);
+bool	check_wall(mlx_t *par, int add, bool is_x);
+bool	check_door(mlx_t *par, int add, bool is_x);
+void	update_player(mlx_t *param);
 void	update_empty(mlx_t *server);
 void	update_wall(mlx_t *server);
-void	gameover(mlx_t *server);
-
+void	update_door(mlx_t *server);
+void	update_food(mlx_t *server);
+void	update_enemy(mlx_t *server);
+int		render_next_frame(mlx_t *server);
+void	animation(mlx_t *server);
+void	images_slayer(mlx_t *server);
+void	delay(size_t ms);
+void	map_parse(char *path, mlx_t *par);
 
 #endif

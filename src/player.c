@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 13:50:02 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:05:20 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ bool	check_wall(mlx_t *par, int add, bool is_x)
 bool	check_door(mlx_t *par, int add, bool is_x)
 {
 	if (is_x)
+	{
 		if (((*par).items.player.x[0] + add) == (*par).items.door.x[0]
 			&& (*par).items.player.y[0] == (*par).items.door.y[0])
 		{
@@ -65,7 +66,9 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 			else
 				ft_exit(par);
 		}
+	}
 	if (!is_x)
+	{
 		if (((*par).items.player.y[0] + add) == (*par).items.door.y[0]
 			&& (*par).items.player.x[0] == (*par).items.door.x[0])
 		{
@@ -74,91 +77,18 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 			else
 				ft_exit(par);
 		}
+	}
 	return (true);
 }
 
-
-void	w_key(mlx_t *par)
+void	update_player(mlx_t *param)
 {
-	(*par).items.player.path[16] = 'u';
-	if (!check_wall(par, -ADD, false) || !check_door(par, -ADD, false))
-		return ;
-	mlx_put_image_to_window(par->mlx, par->win, par->items.empty.img,\
-		(*par).items.player.x[0], (*par).items.player.y[0]);
-	(*par).items.player.y[0] -= ADD;
-	(*par).moves++;
-	check_food(par);
-}
+	static int	c = '0';
 
-void	a_key(mlx_t *par)
-{
-	(*par).items.player.path[16] = 'l';
-	if (!check_wall(par, -ADD, true) || !check_door(par, -ADD, true))
-		return ;
-	mlx_put_image_to_window(par->mlx, par->win, par->items.empty.img,\
-		(*par).items.player.x[0], (*par).items.player.y[0]);
-	(*par).items.player.x[0] -= ADD;
-	(*par).moves++;
-	check_food(par);
-}
-
-void	d_key(mlx_t *par)
-{
-	(*par).items.player.path[16] = 'r';
-	if (!check_wall(par, ADD, true) || !check_door(par, ADD, true))
-		return ;
-	mlx_put_image_to_window(par->mlx, par->win, par->items.empty.img,\
-		(*par).items.player.x[0], (*par).items.player.y[0]);
-	(*par).items.player.x[0] += ADD;
-	(*par).moves++;
-	check_food(par);
-}
-
-void	s_key(mlx_t *par)
-{
-	(*par).items.player.path[16] = 'd';
-	if (!check_wall(par, ADD, false) || !check_door(par, ADD, false))
-		return ;
-	mlx_put_image_to_window(par->mlx, par->win, par->items.empty.img,
-		(*par).items.player.x[0], (*par).items.player.y[0]);
-	(*par).items.player.y[0] += ADD;
-	(*par).moves++;
-	check_food(par);
-}
-
-void move_player(int keycode, mlx_t *par)
-{
-	if (keycode == W)
-		w_key(par);
-	if (keycode == A)
-		a_key(par);
-	if (keycode == D)
-		d_key(par);
-	if (keycode == S)
-		s_key(par);
-	if ((*par).score == 0)
-		(*par).lock = false;
-}
-
-void update_player(mlx_t *param)
-{
-	static int c = '0';
-	static int i = 0;
-	int limit = (INT_MAX / 40) / (param->hight * param->width);
-
-	if (i < limit)
-	{
-		if (i == limit / 2)
-		{
-			if (c <= '9')
-				param->items.player.path[18] = c++;
-			else
-				c = '0';
-		}
-		i++;
-	}
+	if (c++ <= '9')
+		param->items.player.path[18] = c++;
 	else
-		i = 0;
-	mlx_put_image_to_window(param->mlx, param->win, param->items.player.img, param->items.player.x[0], param->items.player.y[0]);
+		c = '0';
+	mlx_put_image_to_window(param->mlx, param->win, param->items.player.img,
+		param->items.player.x[0], param->items.player.y[0]);
 }
-

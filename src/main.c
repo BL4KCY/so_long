@@ -12,7 +12,6 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	map_parse(argv[1], &server);
-	printf("score: %d\n", server.score);
 	server.mlx = mlx_init();
 	if (server.mlx == NULL)
 		return (EXIT_FAILURE);
