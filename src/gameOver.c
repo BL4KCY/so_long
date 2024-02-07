@@ -6,12 +6,11 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 12:01:23 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:34:05 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	gameover(mlx_t *server)
 {

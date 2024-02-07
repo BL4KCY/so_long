@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:47:29 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/04 22:57:18 by bl4kcy           ###   ########.fr       */
+/*   Updated: 2024/02/07 13:38:37 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void arrow_keys(int *keycode);
+static void	arrow_keys(int *keycode);
 
-int keyboard(int keycode, mlx_t *param)
+int	keyboard(int keycode, mlx_t *param)
 {
 	arrow_keys(&keycode);
 	if (keycode == ESC)
@@ -26,7 +26,7 @@ int keyboard(int keycode, mlx_t *param)
 	return (0);
 }
 
-static void arrow_keys(int *keycode)
+static void	arrow_keys(int *keycode)
 {
 	if (*keycode == UP)
 		*keycode = W;

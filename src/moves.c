@@ -3,49 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bl4kcy <bl4kcy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:49:28 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/04 22:57:51 by bl4kcy           ###   ########.fr       */
+/*   Updated: 2024/02/07 13:43:38 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void increase_moves(mlx_t *param, int keycode)
+void	update_moves(mlx_t *server)
 {
-	if (keycode == W)
-	{
-		if (((*param).items.player.x[0] - ADD) >= 0)
-			(*param).moves++;
-	}
-	if (keycode == A)
-	{
-		if (((*param).items.player.x[0] - ADD) >= 0)
-			(*param).moves++;
-	}
-	if (keycode == D)
-	{
-		if (((*param).items.player.x[0] + ADD) < (*param).width &&
-			((2 * ADD) + (*param).items.player.x[0]) <= (*param).width)
-			(*param).moves++;
-	}
-	if (keycode == S)
-	{
-		if (((*param).items.player.y[0] + ADD) < (*param).hight &&
-			((2 * ADD) + (*param).items.player.y[0]) <= (*param).hight)
-			(*param).moves++;
-	}
-}
+	char		str[100];
+	char		*moves;
+	static int	move = -1;
 
-void update_moves(mlx_t *server)
-{
-	char *moves;
-	char str[100];
-
-	ft_strlcpy(str, "Moves: ", 100);
 	moves = ft_itoa(server->moves);
+	ft_strlcpy(str, "Moves: ", 100);
 	ft_strlcat(str, moves, 100);
-	mlx_string_put(server->mlx, server->win, 70, 70, 0x00FF0000, str);
+	if (move != server->moves)
+	{
+		move = server->moves;
+		mlx_put_image_to_window(server->mlx, server->win,
+			server->items.wall.img, 0, 0);
+		mlx_put_image_to_window(server->mlx, server->win,
+			server->items.wall.img, ADD, 0);
+		mlx_string_put(server->mlx, server->win, 0, ADD - 25, 0x00FF00, str);
+	}
 	free(moves);
 }

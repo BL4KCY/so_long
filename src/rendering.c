@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 12:02:57 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:03:31 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void animation(mlx_t *server)
 	update_food(server);
 	update_door(server);
 	update_player(server);
-	update_moves(server);
 	update_enemy(server);
+	update_moves(server);
 	images_slayer(server);
 }
 
