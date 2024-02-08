@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:14:39 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/08 19:17:41 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:30:32 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	update_food(mlx_t *server)
 			mlx_put_image_to_window(server->mlx, server->win, img, x, y);
 	}
 }
-bool	check_wall_enemy(mlx_t *par, int x, int y)
+bool	check_wall_enemy(mlx_t *par, int x, int y, int index)
 {
 	int	i;
 
@@ -97,20 +97,27 @@ bool	check_wall_enemy(mlx_t *par, int x, int y)
 			return (false);
 		i++;
 	}
+	i  = 0;
+	while (i < (*par).items.enemy.len)
+	{
+		if (i != index && (*par).items.enemy.y[i] == y && ((*par).items.enemy.x[i] == x))
+			return (false);
+		i++;
+	}
 	return (true);
 }
 
-bool	right(mlx_t *par, int i, bool is_up)
+bool	right(mlx_t *par, int i, bool is_updn)
 {
-	if ((par->items.enemy.x[i] >= par->items.player.x[0] - (ADD * RNG)
+	if (((par->items.enemy.x[i] >= par->items.player.x[0] - (ADD * RNG)
 		&& par->items.enemy.x[i] < par->items.player.x[0])
-		&& par->items.enemy.y[i] == par->items.player.y[0]) // to be continue inshallah
+		&& par->items.enemy.y[i] == par->items.player.y[0]) || is_updn) // to be continue inshallah
 	{
 
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i] + ADD, par->items.enemy.y[i]))
+		if (check_wall_enemy(par, par->items.enemy.x[i] + ADD, par->items.enemy.y[i], i))
 		{
 			par->items.enemy.x[i] += ADD;
 			return (true);
@@ -121,16 +128,16 @@ bool	right(mlx_t *par, int i, bool is_up)
 	return (false);
 }
 
-bool	left(mlx_t *par, int i, bool is_up)
+bool	left(mlx_t *par, int i, bool is_updn)
 {
 	if (((par->items.enemy.x[i] <= par->items.player.x[0] + (ADD * RNG)
 		&& par->items.enemy.x[i] > par->items.player.x[0])
-		&& par->items.enemy.y[i] == par->items.player.y[0]) || is_up)
+		&& par->items.enemy.y[i] == par->items.player.y[0]) || is_updn)
 	{
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i] - ADD, par->items.enemy.y[i]))
+		if (check_wall_enemy(par, par->items.enemy.x[i] - ADD, par->items.enemy.y[i], i))
 		{
 			par->items.enemy.x[i] -= ADD;
 			return (true);
@@ -141,23 +148,23 @@ bool	left(mlx_t *par, int i, bool is_up)
 	return (false);
 }
 
-bool	up(mlx_t *par, int i)
+bool	up(mlx_t *par, int i, bool is_rtlf)
 {
-	if ((par->items.enemy.y[i] >= par->items.player.y[0] - (ADD * RNG)
+	if (((par->items.enemy.y[i] >= par->items.player.y[0] - (ADD * RNG)
 		&& par->items.enemy.y[i] < par->items.player.y[0])
-		&& par->items.enemy.x[i] == par->items.player.x[0])
+		&& par->items.enemy.x[i] == par->items.player.x[0]) || is_rtlf)
 	{
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] + ADD))
+		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] + ADD, i))
 		{
 			par->items.enemy.y[i] += ADD;
 			return (true);
 		}
 		if (left(par, i, true))
 			return (true);
-		if (right(par, i))
+		if (right(par, i, true))
 			return (true);
 		printf("up\n");
 		return (false);
@@ -165,16 +172,16 @@ bool	up(mlx_t *par, int i)
 	return (false);
 }
 
-bool	down(mlx_t *par, int i)
+bool	down(mlx_t *par, int i, bool is_rtlf)
 {
-	if ((par->items.enemy.y[i] <= par->items.player.y[0] + (ADD * RNG)
+	if (((par->items.enemy.y[i] <= par->items.player.y[0] + (ADD * RNG)
 		&& par->items.enemy.y[i] > par->items.player.y[0])
-		&& par->items.enemy.x[i] == par->items.player.x[0])
+		&& par->items.enemy.x[i] == par->items.player.x[0]) || is_rtlf)
 	{
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] - ADD))
+		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] - ADD, i))
 		{
 			par->items.enemy.y[i] -= ADD;
 			return (true);
@@ -195,12 +202,12 @@ bool	upleft(mlx_t *par, int i)
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i] + ADD, par->items.enemy.y[i]))
+		if (check_wall_enemy(par, par->items.enemy.x[i] + ADD, par->items.enemy.y[i], i))
 		{
 			par->items.enemy.x[i] += ADD;
 			return (true);
 		}
-		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] + ADD))
+		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] + ADD, i))
 		{
 			par->items.enemy.y[i] += ADD;
 			return (true);
@@ -220,12 +227,12 @@ bool	upright(mlx_t *par, int i)
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i] - ADD, par->items.enemy.y[i]))
+		if (check_wall_enemy(par, par->items.enemy.x[i] - ADD, par->items.enemy.y[i], i))
 		{
 			par->items.enemy.x[i] -= ADD;
 			return (true);
 		}
-		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] + ADD))
+		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] + ADD, i))
 		{
 			par->items.enemy.y[i] += ADD;
 			return (true);
@@ -246,12 +253,12 @@ bool	downleft(mlx_t *par, int i)
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i] + ADD, par->items.enemy.y[i]))
+		if (check_wall_enemy(par, par->items.enemy.x[i] + ADD, par->items.enemy.y[i], i))
 		{
 			par->items.enemy.x[i] += ADD;
 			return (true);
 		}
-		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] - ADD))
+		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] - ADD, i))
 		{
 			par->items.enemy.y[i] -= ADD;
 			return (true);
@@ -272,16 +279,18 @@ bool	downright(mlx_t *par, int i)
 		mlx_put_image_to_window(par->mlx, par->win,
 			par->items.empty.img, par->items.enemy.x[i],
 			par->items.enemy.y[i]);
-		if (check_wall_enemy(par, par->items.enemy.x[i] - ADD, par->items.enemy.y[i]))
+		if (check_wall_enemy(par, par->items.enemy.x[i] - ADD, par->items.enemy.y[i], i))
 		{
 			par->items.enemy.x[i] -= ADD;
 			return (true);
 		}
-		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] - ADD))
+		if (check_wall_enemy(par, par->items.enemy.x[i], par->items.enemy.y[i] - ADD, i))
 		{
 			par->items.enemy.y[i] -= ADD;
 			return (true);
 		}
+		if (down(par, i, true))
+			return (true);
 		printf("downright\n");
 		return (false);
 	}
@@ -300,10 +309,10 @@ void	move_enemy(mlx_t *server)
 			if (!upright(server, i))
 				if (!downleft(server, i))
 					if (!downright(server, i))
-						if (!right(server, i))
+						if (!right(server, i, false))
 							if (!left(server, i, false))
-								if (!up(server, i))
-									if (!down(server, i))
+								if (!up(server, i, false))
+									if (!down(server, i, false))
 										continue;
 		break;
 	}

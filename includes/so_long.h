@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/08 17:55:40 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:19:33 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 # define RIGHT 65363
 # define ADD 50
 # define FPS 30
-# define RNG 4
+# define RNG 5
 
 typedef struct coor_s
 {
