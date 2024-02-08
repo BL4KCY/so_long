@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 13:34:05 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/07 21:20:11 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	gameover(mlx_t *server)
 {
-	ft_exit(server);
+	mlx_string_put(server->mlx, server->win, 10, 10, 0x00FF0000, "Game Over");
 }

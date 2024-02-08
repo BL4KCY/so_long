@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 19:05:20 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:09:22 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,34 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 	return (true);
 }
 
+void	check_enemy(mlx_t *par)
+{
+	int	i;
+
+	i = 0;
+
+	while (i < (*par).items.enemy.len)
+	{
+		if ((*par).items.player.y[0] == (*par).items.enemy.y[i]
+			&& (*par).items.player.x[0] == (*par).items.enemy.x[i])
+			par->gameover = true;
+		i++;
+	}
+}
+
 void	update_player(mlx_t *param)
 {
+	static int	f2 = 300;
 	static int	c = '0';
 
-	if (c++ <= '9')
-		param->items.player.path[18] = c++;
-	else
-		c = '0';
+	if (f2++ == 300)
+	{
+		if (c++ <= '9')
+			param->items.player.path[18] = c++;
+		else
+			c = '0';
+		f2 = 0;
+	}
 	mlx_put_image_to_window(param->mlx, param->win, param->items.player.img,
 		param->items.player.x[0], param->items.player.y[0]);
 }

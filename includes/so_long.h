@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 19:05:59 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:55:40 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@
 # define RIGHT 65363
 # define ADD 50
 # define FPS 30
+# define RNG 4
 
 typedef struct coor_s
 {
@@ -101,6 +102,7 @@ typedef struct mlx_s
 	t_list	*map;
 	int		moves;
 	bool	lock;
+	bool	gameover;
 }	mlx_t;
 
 
@@ -127,6 +129,7 @@ void 	move_player(int keycode, mlx_t *par);
 void	check_food(mlx_t *par);
 bool	check_wall(mlx_t *par, int add, bool is_x);
 bool	check_door(mlx_t *par, int add, bool is_x);
+void	check_enemy(mlx_t *par);
 void	update_player(mlx_t *param);
 void	update_empty(mlx_t *server);
 void	update_wall(mlx_t *server);
@@ -138,5 +141,7 @@ void	animation(mlx_t *server);
 void	images_slayer(mlx_t *server);
 void	delay(size_t ms);
 void	map_parse(char *path, mlx_t *par);
+void	move_enemy(mlx_t *server);
+
 
 #endif
