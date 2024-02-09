@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 08:57:11 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:02:56 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <errno.h>
 # include <stdio.h>
 # include "libft.h"
-
 // macros for mlx functions
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
@@ -57,7 +56,6 @@
 # define ColormapChangeMask (1L<<23)
 # define OwnerGrabButtonMask (1L<<24)
 // macros for mlx keycodes
-# define MALLOC_ERROR 1
 # define ESC 65307
 # define BACK_SPACE 65288
 # define W 119
@@ -72,6 +70,10 @@
 # define FPS 30
 # define RNG 4
 
+// macros for errors
+# define ERR(errmsg) {ft_putendl_fd(errmsg, STDERR_FILENO); exit(EXIT_FAILURE);}
+
+// structs
 typedef struct coor_s
 {
 	int		x[1000];
@@ -103,15 +105,30 @@ typedef struct mlx_s
 	int		moves;
 	bool	lock;
 	bool	gameover;
-	bool	enemy_move;
+	bool	enemy_moved;
 	int		enemy_dir[2];
 }	mlx_t;
-
-
-
+// enums
+enum e_status
+{
+	MALLOC_ERROR,
+	WIN_ERROR,
+	IMG_ERROR,
+	ARG_ERROR,
+	READ_ERROR,
+	EXT_ERROR,
+	EMPTY_ERROR,
+	PLAYER_ERROR,
+	ENEMY_ERROR,
+	FOOD_ERROR,
+	DOOR_ERROR,
+	WALL_ERROR,
+	ESCAPE_PRESS,
+	WINER,
+	LOSER
+};
 // prototypes
-
-int		ft_exit(mlx_t *param);
+int		ft_exit(mlx_t *param, int status);
 void	gameover(mlx_t *server);
 void	empty_init(coor_t *empty, int x, int y);
 void	wall_init(coor_t *wall, int x, int y);
@@ -144,6 +161,16 @@ void	images_slayer(mlx_t *server);
 void	delay(size_t ms);
 void	map_parse(char *path, mlx_t *par);
 void	move_enemy(mlx_t *server);
+bool	right(mlx_t *par, int i);
+bool	left(mlx_t *par, int i);
+bool	up(mlx_t *par, int i);
+bool	down(mlx_t *par, int i);
+bool	upleft(mlx_t *par, int i);
+bool	upright(mlx_t *par, int i);
+bool	downleft(mlx_t *par, int i);
+bool	downright(mlx_t *par, int i);
+bool	check_wall_enemy(mlx_t *par, int x, int y, int index);
 
 
 #endif
+
