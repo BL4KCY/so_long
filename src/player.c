@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 09:31:38 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:06:20 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	check_enemy(mlx_t *par)
 	int	i;
 
 	i = 0;
-
 	while (i < (*par).items.enemy.len)
 	{
 		if ((*par).items.player.y[0] == (*par).items.enemy.y[i]
