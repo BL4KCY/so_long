@@ -5,7 +5,9 @@
 #include <fcntl.h>
 #include <mlx.h>
 
-int main()
+int main(void)
 {
+	int *i;
+	if (i)
+		free(i);
 }
-
