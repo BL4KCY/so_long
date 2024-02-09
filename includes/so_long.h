@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 19:00:42 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:27:12 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,19 +113,9 @@ enum e_status
 {
 	MALLOC_ERROR,
 	WIN_ERROR,
-	IMG_ERROR,
-	ARG_ERROR,
-	READ_ERROR,
-	EXT_ERROR,
-	EMPTY_ERROR,
-	PLAYER_ERROR,
-	ENEMY_ERROR,
-	FOOD_ERROR,
-	DOOR_ERROR,
-	WALL_ERROR,
-	ESCAPE_PRESS,
 	WINER,
-	LOSER
+	LOSER,
+	ESCAPE_PRESS
 };
 // prototypes
 int		ft_exit(mlx_t *param, int status);
