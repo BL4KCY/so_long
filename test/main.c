@@ -1,17 +1,11 @@
-#include <time.h>
+
 #include <stdio.h>
+// #include <errno.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <mlx.h>
 
-int main(void)
+int main()
 {
-	clock_t start, end;
-	long i = 4800000;
-	i *= 100;
-	start = clock();
-	while (i--)
-		;
-	end = clock();
-	printf("Time taken: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
-	return (0);
 }
-
 
