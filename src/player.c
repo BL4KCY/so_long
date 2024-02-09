@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:06:20 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:26:57 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	check_enemy(mlx_t *par)
 	{
 		if ((*par).items.player.y[0] == (*par).items.enemy.y[i]
 			&& (*par).items.player.x[0] == (*par).items.enemy.x[i])
-			par->gameover = true;
+			par->lose = true;
 		i++;
 	}
 }

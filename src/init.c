@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 18:59:56 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:27:43 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	item_counter(t_list *map, int *item)
 void	allocate_coors(mlx_t *server)
 {
 	int	item[6];
+
 	item_counter(server->map, item);
 	set_null(server);
 	server->items.empty.x = malloc(item[0] * sizeof(int));
@@ -51,14 +52,13 @@ void	allocate_coors(mlx_t *server)
 	server->items.player.y = malloc(sizeof(int));
 	server->items.enemy.x = malloc(item[3] * sizeof(int));
 	server->items.enemy.y = malloc(item[3] * sizeof(int));
-	if (!server->items.empty.x || !server->items.empty.y ||
-		!server->items.wall.x || !server->items.wall.y ||
-		!server->items.door.x || !server->items.door.y ||
-		!server->items.food.x || !server->items.food.y ||
-		!server->items.player.x || !server->items.player.y ||
-		!server->items.enemy.x || !server->items.enemy.y)
+	if (!server->items.empty.x || !server->items.empty.y
+		||!server->items.wall.x || !server->items.wall.y
+		|| !server->items.door.x || !server->items.door.y
+		|| !server->items.food.x || !server->items.food.y
+		|| !server->items.player.x || !server->items.player.y
+		|| !server->items.enemy.x || !server->items.enemy.y)
 		ft_exit(server, MALLOC_ERROR);
-	printf("Allocated\n")	;
 }
 
 void	init_game(mlx_t *server)
@@ -75,7 +75,7 @@ void	init_game(mlx_t *server)
 	server->moves = 0;
 	server->lock = true;
 	server->enemy_moved = false;
-	server->gameover = false;
+	server->lose = false;
 	server->width = ft_strlen(server->map->content) * ADD;
 	server->height = ft_lstsize(server->map) * ADD;
 	server->win = mlx_new_window(server->mlx, server->width,
@@ -96,8 +96,8 @@ void	coordinate_init(mlx_t *server, t_list *map, int x, int y)
 		{
 			if (((char *)map->content)[x] == 'P')
 				player_init(&server->items.player, x * ADD, y * ADD);
-			if (((char *)map->content)[x] == '0' ||
-				((char *)map->content)[x] == 'P')
+			if (((char *)map->content)[x] == '0'
+				|| ((char *)map->content)[x] == 'P')
 				empty_init(&server->items.empty, x * ADD, y * ADD);
 			if (((char *)map->content)[x] == '1')
 				wall_init(&server->items.wall, x * ADD, y * ADD);

@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 20:27:12 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:27:16 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct mlx_s
 	t_list	*map;
 	int		moves;
 	bool	lock;
-	bool	gameover;
+	bool	lose;
 	bool	enemy_moved;
 	int		enemy_dir[2];
 }	mlx_t;

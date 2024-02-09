@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:56:56 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:28:24 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 
 void	gameover(mlx_t *server)
 {
-	if (server->gameover)
+	if (server->lose)
 		ft_exit(server, LOSER);
 	else
 		ft_exit(server, WINER);
