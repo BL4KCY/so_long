@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/08 20:19:33 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 08:57:11 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 # define RIGHT 65363
 # define ADD 50
 # define FPS 30
-# define RNG 5
+# define RNG 4
 
 typedef struct coor_s
 {
@@ -96,13 +96,15 @@ typedef struct mlx_s
 	void	*mlx;
 	void	*win;
 	int		width;
-	int		hight;
+	int		height;
 	int		score;
 	items_t	items;
 	t_list	*map;
 	int		moves;
 	bool	lock;
 	bool	gameover;
+	bool	enemy_move;
+	int		enemy_dir[2];
 }	mlx_t;
 
 

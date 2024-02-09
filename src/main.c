@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	if (server.mlx == NULL)
 		return (EXIT_FAILURE);
 	init_game(&server);
-	server.win = mlx_new_window(server.mlx, server.width, server.hight, "so_long");
+	server.win = mlx_new_window(server.mlx, server.width, server.height, "so_long");
 	update_empty(&server);
 	update_wall(&server);
 	if (server.win == NULL)

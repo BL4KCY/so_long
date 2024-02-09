@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/08 19:06:32 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 09:14:24 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	render_next_frame(mlx_t *server)
 	if ((*server).lock != true)
 		(*server).items.door.path[14] = '1';
 	if (server->gameover)
-		ft_exit(server);
+		gameover(server);
 	server->items.player.img = mlx_xpm_file_to_image(server->mlx,
 			server->items.player.path, &x, &y);
 	server->items.enemy.img = mlx_xpm_file_to_image(server->mlx,
@@ -44,7 +44,7 @@ void	animation(mlx_t *server)
 		update_enemy(server);
 		f1 = 0;
 	}
-	if (f2++ == 3000)
+	if (f2++ == 2000)
 	{
 		move_enemy(server);
 		check_enemy(server);

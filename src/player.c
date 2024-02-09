@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/08 10:09:22 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 09:31:38 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_food(mlx_t *par)
 			&& (*par).items.player.x[0] == (*par).items.food.x[i])
 		{
 			(*par).items.food.x[i] = par->width;
-			(*par).items.food.y[i] = par->hight;
+			(*par).items.food.y[i] = par->height;
 			(*par).score--;
 			mlx_put_image_to_window(par->mlx, par->win, par->items.wall.img,
 				(*par).items.food.x[i], (*par).items.food.y[i]);
@@ -64,7 +64,7 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 			if ((*par).lock)
 				return (false);
 			else
-				ft_exit(par);
+				gameover(par);
 		}
 	}
 	if (!is_x)
@@ -75,7 +75,7 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 			if ((*par).lock)
 				return (false);
 			else
-				ft_exit(par);
+				gameover(par);
 		}
 	}
 	return (true);
