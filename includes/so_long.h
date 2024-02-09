@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 12:02:56 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:00:42 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@
 // structs
 typedef struct coor_s
 {
-	int		x[1000];
-	int		y[1000];
-	int		len;
-	char	path[100];
-	void	*img;
+	int			*x;
+	int			*y;
+	int			len;
+	char		path[100];
+	void		*img;
 }	coor_t;
 
 typedef struct items_s
@@ -170,7 +170,7 @@ bool	upright(mlx_t *par, int i);
 bool	downleft(mlx_t *par, int i);
 bool	downright(mlx_t *par, int i);
 bool	check_wall_enemy(mlx_t *par, int x, int y, int index);
-
-
+void	allocate_coors(mlx_t *server);
+void	set_null(mlx_t *server);
 #endif
 
