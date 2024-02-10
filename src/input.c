@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:47:29 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 19:00:24 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 09:25:29 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static void	arrow_keys(int *keycode);
 
 int	keyboard(int keycode, mlx_t *param)
 {
+	if (param->lose)
+		return (0);
 	arrow_keys(&keycode);
 	if (keycode == ESC)
-		ft_exit(param, ESCAPE_PRESS);
+		gameover(param, ESCAPE_PRESS);
 	move_player(keycode, param);
 	return (0);
 }
