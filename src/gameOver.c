@@ -6,48 +6,81 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 21:28:24 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 10:49:27 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	winer_screen(mlx_t *param, int *ind, int *j);
+static void	loser_screen(mlx_t *param, int *ind, int *j);
 
-
-// void	winder(mlx_t *server)
-// {
-// 	int  i;
-// 	char	*nbr;
-// 	char	*buff;
-
-// 	i = 0;
-// 	server->win = mlx_new_window(server->mlx, 480, 480, "Winer");
-// 	char	path[100];
-// 	ft_strlcpy(path, "srcs/texture/winer/", 100);
-// 	while (i < 36)
-// 	{
-// 		nbr = ft_itoa(i);
-// 		buff = ft_strjoin(path, nbr);
-// 		server->items.empty.img = mlx_xpm_file_to_image(server->mlx, buff, &server->items.empty.x[0], &server->items.empty.y[0]);
-// 		mlx_put_image_to_window(server->mlx, server->win, server->items.empty.img, 0, 0);
-// 		mlx_destroy_image(server->mlx, server->items.empty.img);
-// 		free(nbr);
-// 		free(buff);
-// 		i++;
-// 		delay(3);
-// 	}
-// }
-
-// // void	over(mlx_t *server)
-// // {
-
-// // }
-
-
-void	gameover(mlx_t *server)
+void	gameover(mlx_t *server, int status)
 {
-	if (server->lose)
-		ft_exit(server, LOSER);
+	static int	i = 0;
+	static int	j = 0;
+
+	if (i < 10000)
+	{
+		if (status == WINER)
+		{
+			if (j++ == 10000)
+				winer_screen(server, &i, &j);
+		}
+		else if (status == LOSER)
+		{
+			if (j++ == 10000)
+				loser_screen(server, &i, &j);
+		}
+		else
+			ft_exit(server, status);
+	}
 	else
-		ft_exit(server, WINER);
+		ft_exit(server, status);
+}
+
+static void	loser_screen(mlx_t *param, int *ind, int *j)
+{
+	static int	i = 1;
+	void		*img;
+	int			x;
+	int			y;
+	char		*buff;
+
+	if (i == 57)
+		ft_exit(param, LOSER);
+	param->items.food.img = ft_itoa(i);
+	buff = ft_strjoin("textures/loser/", param->items.food.img);
+	img = mlx_xpm_file_to_image(param->mlx, buff, &x, &y);
+	mlx_put_image_to_window(param->mlx, param->win,
+		img, param->width / 2, param->height / 4);
+	mlx_destroy_image(param->mlx, img);
+	free(param->items.food.img);
+	free(buff);
+	i++;
+	(*j) = 0;
+	(*ind)++;
+}
+
+static void	winer_screen(mlx_t *param, int *ind, int *j)
+{
+	static int	i = 1;
+	void		*img;
+	int			x;
+	int			y;
+	char		*buff;
+
+	if (i == 37)
+		ft_exit(param, WINER);
+	param->items.food.img = ft_itoa(i);
+	buff = ft_strjoin("textures/winer/", param->items.food.img);
+	img = mlx_xpm_file_to_image(param->mlx, buff, &x, &y);
+	mlx_put_image_to_window(param->mlx, param->win,
+		img, param->width / 3 + 23, param->height / 4);
+	mlx_destroy_image(param->mlx, img);
+	free(param->items.food.img);
+	free(buff);
+	i++;
+	(*j) = 0;
+	(*ind)++;
 }
