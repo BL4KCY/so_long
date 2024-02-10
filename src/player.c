@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 21:26:57 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 10:50:31 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 		if (((*par).items.player.x[0] + add) == (*par).items.door.x[0]
 			&& (*par).items.player.y[0] == (*par).items.door.y[0])
 		{
-			if ((*par).lock)
-				return (false);
-			else
-				gameover(par);
+			if (!(*par).lock)
+				par->won = true;
+			return (false);
 		}
 	}
 	if (!is_x)
@@ -72,10 +71,9 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 		if (((*par).items.player.y[0] + add) == (*par).items.door.y[0]
 			&& (*par).items.player.x[0] == (*par).items.door.x[0])
 		{
-			if ((*par).lock)
-				return (false);
-			else
-				gameover(par);
+			if (!(*par).lock)
+				par->won = true;
+			return (false);
 		}
 	}
 	return (true);
