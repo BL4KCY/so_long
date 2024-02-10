@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 21:27:16 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 09:36:50 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct mlx_s
 	int		moves;
 	bool	lock;
 	bool	lose;
+	bool	won;
 	bool	enemy_moved;
 	int		enemy_dir[2];
 }	mlx_t;
@@ -119,7 +120,7 @@ enum e_status
 };
 // prototypes
 int		ft_exit(mlx_t *param, int status);
-void	gameover(mlx_t *server);
+void	gameover(mlx_t *server, int status);
 void	empty_init(coor_t *empty, int x, int y);
 void	wall_init(coor_t *wall, int x, int y);
 void	door_init(coor_t *door, int x, int y);
