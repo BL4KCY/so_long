@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 21:49:36 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 11:57:04 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ int	ft_exit(mlx_t *param, int status)
 	free_items(param);
 	mlx_destroy_image(param->mlx, param->items.empty.img);
 	mlx_destroy_image(param->mlx, param->items.wall.img);
-	mlx_destroy_window(param->mlx, param->win);
-	mlx_destroy_display(param->mlx);
-	free(param->mlx);
 	if (status == MALLOC_ERROR)
 		ft_putstr_fd("Error\nMalloc failed\n", 2);
 	else if (status == WIN_ERROR)
 		ft_putstr_fd("Error\nmlx_new_window() failed\n", 2);
 	else if (status == WINER)
-		ft_putstr_fd("You won\n", 1);
+		ft_putstr_fd("You won!!\n", 1);
 	else if (status == LOSER)
-		ft_putstr_fd("You lost\n", 1);
+		ft_putstr_fd("You lost!!\n", 1);
 	else
 		ft_putstr_fd("Game Ended!!\n", 1);
+	mlx_destroy_window(param->mlx, param->win);
+	mlx_destroy_display(param->mlx);
+	free(param->mlx);
 	if (status == MALLOC_ERROR || status == WIN_ERROR)
 		exit(EXIT_FAILURE);
 	else
