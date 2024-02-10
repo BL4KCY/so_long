@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:17:35 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 21:18:00 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 11:59:02 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ERR("Error\nInvalid number of arguments");
 	map_parse(argv[1], &server);
+	check_path(&server);
 	server.mlx = mlx_init();
 	if (server.mlx == NULL)
 		ERR("Error\nmlx_init() failed\n");
