@@ -6,16 +6,16 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 10:49:27 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:28:24 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	winer_screen(mlx_t *param, int *ind, int *j);
-static void	loser_screen(mlx_t *param, int *ind, int *j);
+static void	winer_screen(t_mlx *param, int *ind, int *j);
+static void	loser_screen(t_mlx *param, int *ind, int *j);
 
-void	gameover(mlx_t *server, int status)
+void	gameover(t_mlx *server, int status)
 {
 	static int	i = 0;
 	static int	j = 0;
@@ -39,7 +39,7 @@ void	gameover(mlx_t *server, int status)
 		ft_exit(server, status);
 }
 
-static void	loser_screen(mlx_t *param, int *ind, int *j)
+static void	loser_screen(t_mlx *param, int *ind, int *j)
 {
 	static int	i = 1;
 	void		*img;
@@ -53,7 +53,7 @@ static void	loser_screen(mlx_t *param, int *ind, int *j)
 	buff = ft_strjoin("textures/loser/", param->items.food.img);
 	img = mlx_xpm_file_to_image(param->mlx, buff, &x, &y);
 	mlx_put_image_to_window(param->mlx, param->win,
-		img, param->width / 2, param->height / 4);
+		img, param->width / 3 + 23, param->height / 4);
 	mlx_destroy_image(param->mlx, img);
 	free(param->items.food.img);
 	free(buff);
@@ -62,7 +62,7 @@ static void	loser_screen(mlx_t *param, int *ind, int *j)
 	(*ind)++;
 }
 
-static void	winer_screen(mlx_t *param, int *ind, int *j)
+static void	winer_screen(t_mlx *param, int *ind, int *j)
 {
 	static int	i = 1;
 	void		*img;

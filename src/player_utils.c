@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:05:31 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/08 08:57:13 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:29:11 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	w_key(mlx_t *par)
+void	w_key(t_mlx *par)
 {
 	(*par).items.player.path[16] = 'u';
 	if (!check_wall(par, -ADD, false) || !check_door(par, -ADD, false))
@@ -24,7 +24,7 @@ void	w_key(mlx_t *par)
 	check_food(par);
 }
 
-void	a_key(mlx_t *par)
+void	a_key(t_mlx *par)
 {
 	(*par).items.player.path[16] = 'l';
 	if (!check_wall(par, -ADD, true) || !check_door(par, -ADD, true))
@@ -36,7 +36,7 @@ void	a_key(mlx_t *par)
 	check_food(par);
 }
 
-void	d_key(mlx_t *par)
+void	d_key(t_mlx *par)
 {
 	(*par).items.player.path[16] = 'r';
 	if (!check_wall(par, ADD, true) || !check_door(par, ADD, true))
@@ -48,7 +48,7 @@ void	d_key(mlx_t *par)
 	check_food(par);
 }
 
-void	s_key(mlx_t *par)
+void	s_key(t_mlx *par)
 {
 	(*par).items.player.path[16] = 'd';
 	if (!check_wall(par, ADD, false) || !check_door(par, ADD, false))
@@ -60,7 +60,7 @@ void	s_key(mlx_t *par)
 	check_food(par);
 }
 
-void	move_player(int keycode, mlx_t *par)
+void	move_player(int keycode, t_mlx *par)
 {
 	if (keycode == W)
 		w_key(par);

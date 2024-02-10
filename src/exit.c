@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 11:57:04 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:28:11 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_items(mlx_t *param)
+void	free_items(t_mlx *param)
 {
 	if (param->items.empty.x)
 		free(param->items.empty.x);
@@ -40,7 +40,7 @@ void	free_items(mlx_t *param)
 		free(param->items.enemy.y);
 }
 
-int	ft_exit(mlx_t *param, int status)
+int	ft_exit(t_mlx *param, int status)
 {
 	free_items(param);
 	mlx_destroy_image(param->mlx, param->items.empty.img);
@@ -52,7 +52,7 @@ int	ft_exit(mlx_t *param, int status)
 	else if (status == WINER)
 		ft_putstr_fd("You won!!\n", 1);
 	else if (status == LOSER)
-		ft_putstr_fd("You lost!!\n", 1);
+		ft_putstr_fd("You lose!!\n", 1);
 	else
 		ft_putstr_fd("Game Ended!!\n", 1);
 	mlx_destroy_window(param->mlx, param->win);

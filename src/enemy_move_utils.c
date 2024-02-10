@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 10:47:17 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:05:44 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:27:51 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	check_wall_enemy(mlx_t *par, int x, int y, int index)
+bool	check_wall_enemy(t_mlx *par, int x, int y, int index)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ bool	check_wall_enemy(mlx_t *par, int x, int y, int index)
 	return (true);
 }
 
-bool	upleft(mlx_t *par, int i)
+bool	upleft(t_mlx *par, int i)
 {
 	if ((par->items.enemy.y[i] >= par->items.player.y[0] - (ADD * RNG)
 			&& par->items.enemy.y[i] < par->items.player.y[0])
@@ -60,7 +60,7 @@ bool	upleft(mlx_t *par, int i)
 	return (false);
 }
 
-bool	upright(mlx_t *par, int i)
+bool	upright(t_mlx *par, int i)
 {
 	if ((par->items.enemy.y[i] >= par->items.player.y[0] - (ADD * RNG)
 			&& par->items.enemy.y[i] < par->items.player.y[0])
@@ -84,7 +84,7 @@ bool	upright(mlx_t *par, int i)
 	return (false);
 }
 
-bool	downleft(mlx_t *par, int i)
+bool	downleft(t_mlx *par, int i)
 {
 	if ((par->items.enemy.y[i] <= par->items.player.y[0] + (ADD * RNG)
 			&& par->items.enemy.y[i] > par->items.player.y[0])
@@ -108,7 +108,7 @@ bool	downleft(mlx_t *par, int i)
 	return (false);
 }
 
-bool	downright(mlx_t *par, int i)
+bool	downright(t_mlx *par, int i)
 {
 	if ((par->items.enemy.y[i] <= par->items.player.y[0] + (ADD * RNG)
 			&& par->items.enemy.y[i] > par->items.player.y[0])

@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:49:28 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 16:38:28 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:29:05 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	update_moves(mlx_t *server)
+void	update_moves(t_mlx *server)
 {
 	char		str[100];
 	char		*moves;

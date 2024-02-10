@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:14:39 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:04:06 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:30:51 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	update_empty(mlx_t *server)
+void	update_empty(t_mlx *server)
 {
 	int		i;
 	int		x;
@@ -29,7 +29,7 @@ void	update_empty(mlx_t *server)
 	}
 }
 
-void	update_wall(mlx_t *server)
+void	update_wall(t_mlx *server)
 {
 	int		i;
 	int		x;
@@ -46,7 +46,7 @@ void	update_wall(mlx_t *server)
 	}
 }
 
-void	update_door(mlx_t *server)
+void	update_door(t_mlx *server)
 {
 	int		x;
 	int		y;
@@ -58,7 +58,7 @@ void	update_door(mlx_t *server)
 	mlx_put_image_to_window(server->mlx, server->win, img, x, y);
 }
 
-void	update_food(mlx_t *server)
+void	update_food(t_mlx *server)
 {
 	int			j;
 	void		*img;
@@ -87,7 +87,7 @@ void	update_food(mlx_t *server)
 	}
 }
 
-void	update_enemy(mlx_t *server)
+void	update_enemy(t_mlx *server)
 {
 	static int	c = '0';
 	int			j;

@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 09:48:28 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:30:59 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	render_next_frame(mlx_t *server)
+int	render_next_frame(t_mlx *server)
 {
 	int	x;
 	int	y;
@@ -41,7 +41,7 @@ int	render_next_frame(mlx_t *server)
 	return (0);
 }
 
-void	animation(mlx_t *server)
+void	animation(t_mlx *server)
 {
 	static int	f1 = 600;
 	static int	f2 = 0;
@@ -64,7 +64,7 @@ void	animation(mlx_t *server)
 	images_slayer(server);
 }
 
-void	images_slayer(mlx_t *server)
+void	images_slayer(t_mlx *server)
 {
 	if (server->items.door.img)
 		mlx_destroy_image(server->mlx, server->items.door.img);

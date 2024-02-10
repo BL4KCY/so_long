@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 10:50:31 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:29:19 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_food(mlx_t *par)
+void	check_food(t_mlx *par)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ void	check_food(mlx_t *par)
 	}
 }
 
-bool	check_wall(mlx_t *par, int add, bool is_x)
+bool	check_wall(t_mlx *par, int add, bool is_x)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ bool	check_wall(mlx_t *par, int add, bool is_x)
 	return (true);
 }
 
-bool	check_door(mlx_t *par, int add, bool is_x)
+bool	check_door(t_mlx *par, int add, bool is_x)
 {
 	if (is_x)
 	{
@@ -79,7 +79,7 @@ bool	check_door(mlx_t *par, int add, bool is_x)
 	return (true);
 }
 
-void	check_enemy(mlx_t *par)
+void	check_enemy(t_mlx *par)
 {
 	int	i;
 
@@ -93,7 +93,7 @@ void	check_enemy(mlx_t *par)
 	}
 }
 
-void	update_player(mlx_t *param)
+void	update_player(t_mlx *param)
 {
 	static int	f2 = 300;
 	static int	c = '0';

@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 09:36:50 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:45:54 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,33 +74,33 @@
 # define ERR(errmsg) {ft_putendl_fd(errmsg, STDERR_FILENO); exit(EXIT_FAILURE);}
 
 // structs
-typedef struct coor_s
+typedef struct
 {
 	int			*x;
 	int			*y;
 	int			len;
 	char		path[100];
 	void		*img;
-}	coor_t;
+}	t_coor;
 
-typedef struct items_s
+typedef struct
 {
-	coor_t	player;
-	coor_t	enemy;
-	coor_t	food;
-	coor_t	empty;
-	coor_t	wall;
-	coor_t	door;
-}	items_t;
+	t_coor	player;
+	t_coor	enemy;
+	t_coor	food;
+	t_coor	empty;
+	t_coor	wall;
+	t_coor	door;
+}	t_items;
 
-typedef struct mlx_s
+typedef struct
 {
 	void	*mlx;
 	void	*win;
 	int		width;
 	int		height;
 	int		score;
-	items_t	items;
+	t_items	items;
 	t_list	*map;
 	int		moves;
 	bool	lock;
@@ -108,7 +108,14 @@ typedef struct mlx_s
 	bool	won;
 	bool	enemy_moved;
 	int		enemy_dir[2];
-}	mlx_t;
+}	t_mlx;
+
+typedef struct
+{
+	int x;
+	int y;
+}	t_point;
+
 // enums
 enum e_status
 {
@@ -116,52 +123,60 @@ enum e_status
 	WIN_ERROR,
 	WINER,
 	LOSER,
-	ESCAPE_PRESS
+	ESCAPE_PRESS,
+	INVALID_MAP
 };
 // prototypes
-int		ft_exit(mlx_t *param, int status);
-void	gameover(mlx_t *server, int status);
-void	empty_init(coor_t *empty, int x, int y);
-void	wall_init(coor_t *wall, int x, int y);
-void	door_init(coor_t *door, int x, int y);
-void	food_init(coor_t *food, int x, int y);
-void	enemy_init(coor_t *enemy, int x, int y);
-void	init_game(mlx_t *server);
-void	coordinate_init(mlx_t *server, t_list *map, int x, int y);
-void	player_init(coor_t *player, int x, int y);
-int		keyboard(int keycode, mlx_t *param);
-void	update_moves(mlx_t *server);
-void	w_key(mlx_t *par);
-void	a_key(mlx_t *par);
-void	d_key(mlx_t *par);
-void	s_key(mlx_t *par);
-void 	move_player(int keycode, mlx_t *par);
-void	check_food(mlx_t *par);
-bool	check_wall(mlx_t *par, int add, bool is_x);
-bool	check_door(mlx_t *par, int add, bool is_x);
-void	check_enemy(mlx_t *par);
-void	update_player(mlx_t *param);
-void	update_empty(mlx_t *server);
-void	update_wall(mlx_t *server);
-void	update_door(mlx_t *server);
-void	update_food(mlx_t *server);
-void	update_enemy(mlx_t *server);
-int		render_next_frame(mlx_t *server);
-void	animation(mlx_t *server);
-void	images_slayer(mlx_t *server);
+int		ft_exit(t_mlx *param, int status);
+void	gameover(t_mlx *server, int status);
+void	empty_init(t_coor *empty, int x, int y);
+void	wall_init(t_coor *wall, int x, int y);
+void	door_init(t_coor *door, int x, int y);
+void	food_init(t_coor *food, int x, int y);
+void	enemy_init(t_coor *enemy, int x, int y);
+void	init_game(t_mlx *server);
+void	coordinate_init(t_mlx *server, t_list *map, int x, int y);
+void	player_init(t_coor *player, int x, int y);
+int		keyboard(int keycode, t_mlx *param);
+void	update_moves(t_mlx *server);
+void	w_key(t_mlx *par);
+void	a_key(t_mlx *par);
+void	d_key(t_mlx *par);
+void	s_key(t_mlx *par);
+void 	move_player(int keycode, t_mlx *par);
+void	check_food(t_mlx *par);
+bool	check_wall(t_mlx *par, int add, bool is_x);
+bool	check_door(t_mlx *par, int add, bool is_x);
+void	check_enemy(t_mlx *par);
+void	update_player(t_mlx *param);
+void	update_empty(t_mlx *server);
+void	update_wall(t_mlx *server);
+void	update_door(t_mlx *server);
+void	update_food(t_mlx *server);
+void	update_enemy(t_mlx *server);
+int		render_next_frame(t_mlx *server);
+void	animation(t_mlx *server);
+void	images_slayer(t_mlx *server);
 void	delay(size_t ms);
-void	map_parse(char *path, mlx_t *par);
-void	move_enemy(mlx_t *server);
-bool	right(mlx_t *par, int i);
-bool	left(mlx_t *par, int i);
-bool	up(mlx_t *par, int i);
-bool	down(mlx_t *par, int i);
-bool	upleft(mlx_t *par, int i);
-bool	upright(mlx_t *par, int i);
-bool	downleft(mlx_t *par, int i);
-bool	downright(mlx_t *par, int i);
-bool	check_wall_enemy(mlx_t *par, int x, int y, int index);
-void	allocate_coors(mlx_t *server);
-void	set_null(mlx_t *server);
+void	map_parse(char *path, t_mlx *par);
+void	move_enemy(t_mlx *server);
+bool	right(t_mlx *par, int i);
+bool	left(t_mlx *par, int i);
+bool	up(t_mlx *par, int i);
+bool	down(t_mlx *par, int i);
+bool	upleft(t_mlx *par, int i);
+bool	upright(t_mlx *par, int i);
+bool	downleft(t_mlx *par, int i);
+bool	downright(t_mlx *par, int i);
+bool	check_wall_enemy(t_mlx *par, int x, int y, int index);
+void	allocate_coors(t_mlx *server);
+void	set_null(t_mlx *server);
+void	free_items(t_mlx *param);
+void	check_path(t_mlx *par);
+char	**copy_map(t_mlx *par, t_list *map);
+void	print_map(char **map);
+bool	door_path(t_mlx *par, char **copy);
+bool	food_path(t_mlx *par, char **copy);
+
 #endif
 

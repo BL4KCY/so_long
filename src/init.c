@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 10:08:57 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:36:21 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	item_counter(t_list *map, int *item)
 	}
 }
 
-void	allocate_coors(mlx_t *server)
+void	allocate_coors(t_mlx *server)
 {
 	int	item[6];
 
@@ -61,13 +61,16 @@ void	allocate_coors(mlx_t *server)
 		ft_exit(server, MALLOC_ERROR);
 }
 
-void	init_game(mlx_t *server)
+void	init_game(t_mlx *server)
 {
 	int	x;
 	int	y;
 
 	allocate_coors(server);
 	coordinate_init(server, server->map, 0, 0);
+	server->height = ft_lstsize(server->map) * ADD;
+	server->width = ft_strlen(server->map->content) * ADD;
+	check_path(server);
 	server->items.empty.img = mlx_xpm_file_to_image(server->mlx,
 			server->items.empty.path, &x, &y);
 	server->items.wall.img = mlx_xpm_file_to_image(server->mlx,
@@ -77,8 +80,6 @@ void	init_game(mlx_t *server)
 	server->enemy_moved = false;
 	server->lose = false;
 	server->won = false;
-	server->width = ft_strlen(server->map->content) * ADD;
-	server->height = ft_lstsize(server->map) * ADD;
 	server->win = mlx_new_window(server->mlx, server->width,
 			server->height, "so_long");
 	if (!server->win)
@@ -88,7 +89,7 @@ void	init_game(mlx_t *server)
 	ft_lstclear(&server->map, free);
 }
 
-void	coordinate_init(mlx_t *server, t_list *map, int x, int y)
+void	coordinate_init(t_mlx *server, t_list *map, int x, int y)
 {
 	while (map)
 	{
@@ -114,7 +115,7 @@ void	coordinate_init(mlx_t *server, t_list *map, int x, int y)
 	}
 }
 
-void	player_init(coor_t *player, int x, int y)
+void	player_init(t_coor *player, int x, int y)
 {
 	static int	i = 0;
 

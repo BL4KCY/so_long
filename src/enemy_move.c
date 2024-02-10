@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 10:44:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:00:55 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:28:02 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_enemy(mlx_t *server)
+void	move_enemy(t_mlx *server)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	move_enemy(mlx_t *server)
 	}
 }
 
-bool	right(mlx_t *par, int i)
+bool	right(t_mlx *par, int i)
 {
 	if (((par->items.enemy.x[i] >= par->items.player.x[0] - (ADD * RNG)
 				&& par->items.enemy.x[i] < par->items.player.x[0])
@@ -52,7 +52,7 @@ bool	right(mlx_t *par, int i)
 	return (false);
 }
 
-bool	left(mlx_t *par, int i)
+bool	left(t_mlx *par, int i)
 {
 	if (((par->items.enemy.x[i] <= par->items.player.x[0] + (ADD * RNG)
 				&& par->items.enemy.x[i] > par->items.player.x[0])
@@ -69,7 +69,7 @@ bool	left(mlx_t *par, int i)
 	return (false);
 }
 
-bool	up(mlx_t *par, int i)
+bool	up(t_mlx *par, int i)
 {
 	if (((par->items.enemy.y[i] >= par->items.player.y[0] - (ADD * RNG)
 				&& par->items.enemy.y[i] < par->items.player.y[0])
@@ -86,7 +86,7 @@ bool	up(mlx_t *par, int i)
 	return (false);
 }
 
-bool	down(mlx_t *par, int i)
+bool	down(t_mlx *par, int i)
 {
 	if (((par->items.enemy.y[i] <= par->items.player.y[0] + (ADD * RNG)
 				&& par->items.enemy.y[i] > par->items.player.y[0])

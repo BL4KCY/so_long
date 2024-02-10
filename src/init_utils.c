@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:28:56 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/07 13:33:08 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:28:32 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	empty_init(coor_t *empty, int x, int y)
+void	empty_init(t_coor *empty, int x, int y)
 {
 	static int	i = 0;
 
@@ -23,7 +23,7 @@ void	empty_init(coor_t *empty, int x, int y)
 	empty->len = (++i);
 }
 
-void	wall_init(coor_t *wall, int x, int y)
+void	wall_init(t_coor *wall, int x, int y)
 {
 	static int	i = 0;
 
@@ -34,7 +34,7 @@ void	wall_init(coor_t *wall, int x, int y)
 	wall->len = (++i);
 }
 
-void	door_init(coor_t *door, int x, int y)
+void	door_init(t_coor *door, int x, int y)
 {
 	ft_strlcpy(door->path, "textures/door/0.xpm", 100);
 	door->x[0] = x;
@@ -42,7 +42,7 @@ void	door_init(coor_t *door, int x, int y)
 	door->len = 0;
 }
 
-void	food_init(coor_t *food, int x, int y)
+void	food_init(t_coor *food, int x, int y)
 {
 	static int	i = 0;
 
@@ -53,7 +53,7 @@ void	food_init(coor_t *food, int x, int y)
 	food->len = (++i);
 }
 
-void	enemy_init(coor_t *enemy, int x, int y)
+void	enemy_init(t_coor *enemy, int x, int y)
 {
 	static int	i = 0;
 
