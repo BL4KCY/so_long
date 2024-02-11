@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 18:45:54 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/11 21:44:25 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@
 # define ADD 50
 # define FPS 30
 # define RNG 4
+# define MAX_HEIGHT 1080
+# define MAX_WIDTH 1950
 
 // macros for errors
 # define ERR(errmsg) {ft_putendl_fd(errmsg, STDERR_FILENO); exit(EXIT_FAILURE);}
@@ -174,9 +176,11 @@ void	set_null(t_mlx *server);
 void	free_items(t_mlx *param);
 void	check_path(t_mlx *par);
 char	**copy_map(t_mlx *par, t_list *map);
-void	print_map(char **map);
 bool	door_path(t_mlx *par, char **copy);
 bool	food_path(t_mlx *par, char **copy);
-
+void	ft_free2d(char **map);
+void	flood_fill(char **map, int x, int y);
+char	**copy_map(t_mlx *par, t_list *map);
+bool	is_valid_path(t_mlx *par, char **copy);
 #endif
 
