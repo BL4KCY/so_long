@@ -14,7 +14,7 @@ INCLUDES = includes
 LIB_INCLUDES = libft/includes
 
 #______mandatory files______#
-FILES = main.c prase_map.c exit.c init.c init_utils.c input.c moves.c\
+FILES = main.c parse_map.c parse_map_utils.c exit.c init.c init_utils.c input.c moves.c\
 		player.c player_utils.c rendering.c rendering_utils.c gameOver.c\
 		enemy_move.c enemy_move_utils.c
 
