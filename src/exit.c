@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 18:28:11 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/11 21:51:42 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,15 @@ int	ft_exit(t_mlx *param, int status)
 		ft_putstr_fd("You won!!\n", 1);
 	else if (status == LOSER)
 		ft_putstr_fd("You lose!!\n", 1);
+	else if (status == INVALID_MAP)
+		ft_putstr_fd("Error\nInvalid map\n", 2);
 	else
 		ft_putstr_fd("Game Ended!!\n", 1);
-	mlx_destroy_window(param->mlx, param->win);
+	if (status != INVALID_MAP)
+		mlx_destroy_window(param->mlx, param->win);
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
+	ft_lstclear(&param->map, free);
 	if (status == MALLOC_ERROR || status == WIN_ERROR)
 		exit(EXIT_FAILURE);
 	else
