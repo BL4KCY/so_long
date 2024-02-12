@@ -6,13 +6,11 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:17:35 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/12 13:34:03 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:20:20 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
-#include <unistd.h>
 
 int	main(int argc, char **argv)
 {

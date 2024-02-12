@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/11 22:04:03 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:14:31 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	map_parse(char *path, t_mlx *par)
 	{
 		next_line = get_next_line(fd);
 		par->score = check_line(line, len, par->map == NULL, next_line == NULL);
-		if (len != strlen(line) || par->score == 0)
+		if (len != ft_strlen(line) || par->score == 0)
 		{
 			ft_putendl_fd("Error\nINAVALID MAP!!!", STDERR_FILENO);
 			ft_lstclear(&(par->map), free);
