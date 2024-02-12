@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/11 21:44:25 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:49:46 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,11 @@
 # include <errno.h>
 # include <stdio.h>
 # include "libft.h"
-// macros for mlx functions
+
 # define ON_KEYDOWN 2
-# define ON_KEYUP 3
-# define ON_MOUSEDOWN 4
-# define ON_MOUSEUP 5
-# define ON_MOUSEMOVE 6
-# define ON_EXPOSE 12
 # define ON_DESTROY 17
-// macros for mlx hooks
-# define NoEventMask 0L
-# define KeyPressMask (1L<<0)
-# define KeyReleaseMask (1L<<1)
-# define ButtonPressMask (1L<<2)
-# define ButtonReleaseMask (1L<<3)
-# define EnterWindowMask (1L<<4)
-# define LeaveWindowMask (1L<<5)
-# define PointerMotionMask (1L<<6)
-# define PointerMotionHintMask (1L<<7)
-# define Button1MotionMask (1L<<8)
-# define Button2MotionMask (1L<<9)
-# define Button3MotionMask (1L<<10)
-# define Button4MotionMask (1L<<11)
-# define Button5MotionMask (1L<<12)
-# define ButtonMotionMask (1L<<13)
-# define KeymapStateMask (1L<<14)
-# define ExposureMask (1L<<15)
-# define VisibilityChangeMask (1L<<16)
-# define StructureNotifyMask (1L<<17)
-# define ResizeRedirectMask (1L<<18)
-# define SubstructureNotifyMask (1L<<19)
-# define SubstructureRedirectMask (1L<<20)
-# define FocusChangeMask (1L<<21)
-# define PropertyChangeMask (1L<<22)
-# define ColormapChangeMask (1L<<23)
-# define OwnerGrabButtonMask (1L<<24)
-// macros for mlx keycodes
+# define KEYPRESSMASK 1
 # define ESC 65307
-# define BACK_SPACE 65288
 # define W 119
 # define S 115
 # define A 97
@@ -67,16 +34,14 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ADD 50
-# define FPS 30
 # define RNG 4
 # define MAX_HEIGHT 1080
 # define MAX_WIDTH 1950
 
 // macros for errors
 # define ERR(errmsg) {ft_putendl_fd(errmsg, STDERR_FILENO); exit(EXIT_FAILURE);}
-
 // structs
-typedef struct
+typedef struct s_coor
 {
 	int			*x;
 	int			*y;
@@ -85,7 +50,7 @@ typedef struct
 	void		*img;
 }	t_coor;
 
-typedef struct
+typedef struct s_items
 {
 	t_coor	player;
 	t_coor	enemy;
@@ -95,7 +60,7 @@ typedef struct
 	t_coor	door;
 }	t_items;
 
-typedef struct
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
@@ -112,10 +77,10 @@ typedef struct
 	int		enemy_dir[2];
 }	t_mlx;
 
-typedef struct
+typedef struct s_point
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_point;
 
 // enums
@@ -145,7 +110,7 @@ void	w_key(t_mlx *par);
 void	a_key(t_mlx *par);
 void	d_key(t_mlx *par);
 void	s_key(t_mlx *par);
-void 	move_player(int keycode, t_mlx *par);
+void	move_player(int keycode, t_mlx *par);
 void	check_food(t_mlx *par);
 bool	check_wall(t_mlx *par, int add, bool is_x);
 bool	check_door(t_mlx *par, int add, bool is_x);
@@ -183,4 +148,3 @@ void	flood_fill(char **map, int x, int y);
 char	**copy_map(t_mlx *par, t_list *map);
 bool	is_valid_path(t_mlx *par, char **copy);
 #endif
-
