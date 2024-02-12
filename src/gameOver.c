@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 18:28:24 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:38:58 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ static void	loser_screen(t_mlx *param, int *ind, int *j)
 	int			y;
 	char		*buff;
 
-	if (i == 57)
+	if (i == 41)
 		ft_exit(param, LOSER);
 	param->items.food.img = ft_itoa(i);
 	buff = ft_strjoin("textures/loser/", param->items.food.img);
 	img = mlx_xpm_file_to_image(param->mlx, buff, &x, &y);
 	mlx_put_image_to_window(param->mlx, param->win,
-		img, param->width / 3 + 23, param->height / 4);
+		img, (param->width / 2) - ((ADD * 2) + (ADD / 2)),
+		(param->height / 2) - (ADD / 2));
 	mlx_destroy_image(param->mlx, img);
 	free(param->items.food.img);
 	free(buff);
@@ -70,13 +71,14 @@ static void	winer_screen(t_mlx *param, int *ind, int *j)
 	int			y;
 	char		*buff;
 
-	if (i == 37)
+	if (i == 41)
 		ft_exit(param, WINER);
 	param->items.food.img = ft_itoa(i);
-	buff = ft_strjoin("textures/winer/", param->items.food.img);
+	buff = ft_strjoin("textures/winner/", param->items.food.img);
 	img = mlx_xpm_file_to_image(param->mlx, buff, &x, &y);
 	mlx_put_image_to_window(param->mlx, param->win,
-		img, param->width / 3 + 23, param->height / 4);
+		img, (param->width / 2) - ((ADD * 2) + (ADD / 2)),
+		(param->height / 2) - (ADD / 2));
 	mlx_destroy_image(param->mlx, img);
 	free(param->items.food.img);
 	free(buff);
