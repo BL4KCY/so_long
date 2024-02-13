@@ -6,13 +6,13 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/12 15:14:31 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:51:33 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_fd(char	*path)
+int	get_fd(char	*path, char **line, size_t *len)
 {
 	int	fd;
 
@@ -22,6 +22,14 @@ int	get_fd(char	*path)
 		ft_putendl_fd(strerror(ENOENT), STDERR_FILENO);
 		exit(1);
 	}
+	*line = get_next_line(fd);
+	if (!*line)
+	{
+		ft_putendl_fd("Error\nEmpty file", STDERR_FILENO);
+		exit(1);
+	}
+	*len = ft_strlen(*line) - 1;
+	line[0][*len] = '\0';
 	return (fd);
 }
 
@@ -56,21 +64,17 @@ int	check_line(char *line, int len, bool first, bool last)
 
 void	map_parse(char *path, t_mlx *par)
 {
-	int		fd;
 	size_t	len;
 	char	*line;
-	char	*next_line;
+	char	*buff;
 
 	par->map = NULL;
-	fd = get_fd(path);
-	next_line = get_next_line(fd);
-	line = ft_strtrim(next_line, "\n");
-	free(next_line);
-	len = ft_strlen(line);
+	par->fd = get_fd(path, &line, &len);
 	while (line)
 	{
-		next_line = get_next_line(fd);
-		par->score = check_line(line, len, par->map == NULL, next_line == NULL);
+		line[len] = '\0';
+		buff = get_next_line(par->fd);
+		par->score = check_line(line, len, par->map == NULL, buff == NULL);
 		if (len != ft_strlen(line) || par->score == 0)
 		{
 			ft_putendl_fd("Error\nINAVALID MAP!!!", STDERR_FILENO);
@@ -78,9 +82,9 @@ void	map_parse(char *path, t_mlx *par)
 			exit(1);
 		}
 		ft_lstadd_back(&(par->map), ft_lstnew(line));
-		line = ft_strtrim(next_line, "\n");
-		free(next_line);
+		line = buff;
 	}
+	close(par->fd);
 }
 
 void	flood_fill(char **map, int x, int y)
