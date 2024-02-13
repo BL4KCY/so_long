@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/11 18:37:53 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:30:14 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	allocate_coors(t_mlx *server)
 		|| !server->items.player.x || !server->items.player.y
 		|| !server->items.enemy.x || !server->items.enemy.y)
 		ft_exit(server, MALLOC_ERROR);
+	server->items.enemy.len = 0;
 }
 
 void	init_game(t_mlx *server)
