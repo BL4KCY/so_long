@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:14:39 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/13 15:37:01 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:40:32 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	update_enemy(t_mlx *server)
 	int			j;
 
 	if (c <= '4')
-		server->items.enemy.path[19] = c++;
+		server->items.enemy.path[15] = c++;
 	else
 		c = '0';
 	j = -1;
