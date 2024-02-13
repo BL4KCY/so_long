@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:36:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/12 16:07:21 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:18:19 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	gameover(t_mlx *server, int status)
 	static int	i = 0;
 	static int	j = 0;
 
-	if (i < 10000)
+	if (i < 40)
 	{
 		if (status == WINER)
 		{
