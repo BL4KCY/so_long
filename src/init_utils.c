@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:28:56 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/10 18:28:32 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:39:23 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	enemy_init(t_coor *enemy, int x, int y)
 	static int	i = 0;
 
 	if (i == 0)
-		ft_strlcpy(enemy->path, "textures/enemy/bat/0.xpm", 100);
+		ft_strlcpy(enemy->path, "textures/enemy/0.xpm", 100);
 	enemy->x[i] = x;
 	enemy->y[i] = y;
 	enemy->len = (++i);
