@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/12 10:49:46 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:20:44 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_mlx
 	int		score;
 	t_items	items;
 	t_list	*map;
+	int		fd;
 	int		moves;
 	bool	lock;
 	bool	lose;
