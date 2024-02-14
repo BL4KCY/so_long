@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:36:20 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/13 16:26:13 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:13:46 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_path(t_mlx *par)
 
 	if (par->height > MAX_HEIGHT || par->width > MAX_WIDTH)
 	{
-		ft_putendl_fd("Error\nMAP TOO BIG!!!", STDERR_FILENO);
+		ft_putendl_fd("Error\n: MAP TOO BIG!!!", STDERR_FILENO);
 		ft_exit(par, INVALID_MAP);
 	}
 	map_cpy = copy_map(par, par->map);
@@ -31,7 +31,7 @@ void	check_path(t_mlx *par)
 		return ;
 	}
 	ft_free2d(map_cpy);
-	ft_putendl_fd("Error\nINVALID PATH !!", STDERR_FILENO);
+	ft_putendl_fd("Error\n: INVALID PATH !!", STDERR_FILENO);
 	ft_exit(par, INVALID_MAP);
 }
 
