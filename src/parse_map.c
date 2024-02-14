@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/13 17:51:33 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:12:10 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	get_fd(char	*path, char **line, size_t *len)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putendl_fd(strerror(ENOENT), STDERR_FILENO);
+		perror("Error\n");
 		exit(1);
 	}
 	*line = get_next_line(fd);
 	if (!*line)
 	{
-		ft_putendl_fd("Error\nEmpty file", STDERR_FILENO);
+		ft_putendl_fd("Error\n: Empty file", STDERR_FILENO);
 		exit(1);
 	}
 	*len = ft_strlen(*line) - 1;
@@ -77,7 +77,7 @@ void	map_parse(char *path, t_mlx *par)
 		par->score = check_line(line, len, par->map == NULL, buff == NULL);
 		if (len != ft_strlen(line) || par->score == 0)
 		{
-			ft_putendl_fd("Error\nINAVALID MAP!!!", STDERR_FILENO);
+			ft_putendl_fd("Error\n: INAVALID MAP!!!", STDERR_FILENO);
 			ft_lstclear(&(par->map), free);
 			exit(1);
 		}
