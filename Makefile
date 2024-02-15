@@ -17,6 +17,16 @@ RED = \033[0;31m
 YELLOW = \033[0;33m
 CYAN = \033[0;36m
 BLUE = \033[0;34m
+PURPLE = \033[0;35m
+BOLD = \033[1m
+UNDERLINE = \033[4m
+ORANGE = \033[0;33m
+LIGHT_BLUE = \033[0;34m
+LIGHT_GREEN = \033[0;32m
+LIGHT_RED = \033[0;31m
+LIGHT_YELLOW = \033[0;33m
+LIGHT_CYAN = \033[0;36m
+MAGENTA = \033[0;35m
 NC = \033[0m
 
 #______mandatory and bonus files______#
@@ -36,19 +46,20 @@ LIB = libft
 #______________Rules______________#
 
 $(NAME): $(OBJECTS) $(LIB)/libft.a
-	@echo "$(GREEN)Compiling $(NAME)...$(NC)"
-	@$(CC) $(CFLAGS) $^ -I$(INCLUDES) -I$(LIB_INCLUDES) -lmlx -lXext -lX11 -o $@ || echo "$(RED)Compilation failed!$(NC)"
+	@echo "$(BLUE)Compiling $@...$(NC)"
+	@$(CC) $(CFLAGS) $^ -I$(INCLUDES) -I$(LIB_INCLUDES) -lmlx -lXext -lX11 -o $@ || echo "$(RED)$(UNDERLINE)$(BOLD)$@ Compilation failed!$(NC)"
+	@if [ -f $(NAME) ]; then echo "$(GREEN)$(UNDERLINE)$(BOLD)$@ compiled!$(NC)"; fi
 
 # impicit rule for mandatory
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(GREEN)Compiling $<...$(NC)"
-	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(LIB_INCLUDES) -c $< -o $@ || echo "$(RED)Compilation failed!$(NC)"
+	@echo "$(BLUE)Compiling $<...$(NC)"
+	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(LIB_INCLUDES) -c $< -o $@ || echo "$(RED)$(UNDERLINE)$(BOLD)$< Compilation failed!$(NC)"
 
 $(LIB)/%.a:
-	@echo "$(GREEN)Compiling Libft...$(NC)"
-	@$(MAKE) all -C $(LIB)
-	@echo "$(GREEN)Libft compiled!$(NC)"
+	@echo "$(BLUE)Compiling Libft...$(NC)"
+	@$(MAKE) all -C $(LIB) >> /dev/null || echo "$(RED)$(UNDERLINE)$(BOLD)Libft compilation failed!$(NC)"
+	@echo "$(GREEN)$(UNDERLINE)$(BOLD)Libft compiled!$(NC)"
 
 bonus:$(BONUS_NAME)
 
@@ -62,9 +73,11 @@ all: $(NAME) $(BONUS_NAME)
 clean:
 	@echo "$(BLUE)Cleaning...$(NC)"
 	@$(RM) $(OBJ_DIR)
-	@$(MAKE) -C $(LIB) fclean
-	@echo "$(YELLOW)Cleaning done!$(NC)"
-fclean: clean
+	@$(MAKE) -C $(LIB) fclean >> /dev/null || echo "$(RED)Libft cleaning failed!$(NC)"
+	@if [ ! -d $(OBJ_DIR) ]; then echo "$(GREEN)$(UNDERLINE)$(BOLD)Cleaning done!$(NC)"; fi
+fclean:
 	@echo "$(BLUE)Full cleaning...$(NC)"
 	@$(RM) $(NAME)
-	@echo "$(YELLOW)Full cleaning done!$(NC)"
+	@$(RM) $(OBJ_DIR)
+	@$(MAKE) -C $(LIB) fclean >> /dev/null || echo "$(RED)Libft cleaning failed!$(NC)"
+	@if [ ! -f $(NAME) ]; then echo "$(GREEN)$(UNDERLINE)$(BOLD)Full cleaning done!$(NC)"; fi
