@@ -6,38 +6,33 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/13 18:30:03 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:41:50 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	ifnfree(void **ptr)
+{
+	if (*ptr)
+		free(*ptr);
+	*ptr = NULL;
+}
+
 void	free_items(t_mlx *param)
 {
-	if (param->items.empty.x)
-		free(param->items.empty.x);
-	if (param->items.empty.y)
-		free(param->items.empty.y);
-	if (param->items.wall.x)
-		free(param->items.wall.x);
-	if (param->items.wall.y)
-		free(param->items.wall.y);
-	if (param->items.door.x)
-		free(param->items.door.x);
-	if (param->items.door.y)
-		free(param->items.door.y);
-	if (param->items.food.x)
-		free(param->items.food.x);
-	if (param->items.food.y)
-		free(param->items.food.y);
-	if (param->items.player.x)
-		free(param->items.player.x);
-	if (param->items.player.y)
-		free(param->items.player.y);
-	if (param->items.enemy.x)
-		free(param->items.enemy.x);
-	if (param->items.enemy.y)
-		free(param->items.enemy.y);
+	ifnfree((void **)&param->items.empty.x);
+	ifnfree((void **)&param->items.empty.y);
+	ifnfree((void **)&param->items.wall.x);
+	ifnfree((void **)&param->items.wall.y);
+	ifnfree((void **)&param->items.food.x);
+	ifnfree((void **)&param->items.food.y);
+	ifnfree((void **)&param->items.player.x);
+	ifnfree((void **)&param->items.player.y);
+	ifnfree((void **)&param->items.enemy.x);
+	ifnfree((void **)&param->items.enemy.y);
+	ifnfree((void **)&param->items.door.x);
+	ifnfree((void **)&param->items.door.y);
 }
 
 int	ft_exit(t_mlx *param, int status)
