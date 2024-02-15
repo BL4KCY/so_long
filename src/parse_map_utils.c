@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:36:20 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/14 12:13:46 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:44:59 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,6 @@ char	**copy_map(t_mlx *par, t_list *map)
 	}
 	copy[i] = NULL;
 	return (copy);
-}
-
-bool	door_path(t_mlx *par, char **copy)
-{
-	int		x;
-	int		y;
-
-	x = par->items.door.x[0] / ADD;
-	y = par->items.door.y[0] / ADD;
-	if (copy[y][x + 1] == 'P' || copy[y][x - 1] == 'P'
-		|| copy[y + 1][x] == 'P' || copy[y - 1][x] == 'P')
-		return (true);
-	return (false);
 }
 
 bool	is_valid_path(t_mlx *par, char **copy)
