@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/12 16:43:10 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:43:03 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,4 @@ void	images_slayer(t_mlx *server)
 	server->items.food.img = NULL;
 	server->items.enemy.img = NULL;
 	server->items.player.img = NULL;
-}
-
-void	delay(size_t ms)
-{
-	ms *= 48000000;
-	while (ms--)
-		;
 }
