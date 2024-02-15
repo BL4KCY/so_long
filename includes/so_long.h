@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/13 18:20:44 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:45:20 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	update_enemy(t_mlx *server);
 int		render_next_frame(t_mlx *server);
 void	animation(t_mlx *server);
 void	images_slayer(t_mlx *server);
-void	delay(size_t ms);
 void	map_parse(char *path, t_mlx *par);
 void	move_enemy(t_mlx *server);
 bool	right(t_mlx *par, int i);
@@ -142,8 +141,6 @@ void	set_null(t_mlx *server);
 void	free_items(t_mlx *param);
 void	check_path(t_mlx *par);
 char	**copy_map(t_mlx *par, t_list *map);
-bool	door_path(t_mlx *par, char **copy);
-bool	food_path(t_mlx *par, char **copy);
 void	ft_free2d(char **map);
 void	flood_fill(char **map, int x, int y);
 char	**copy_map(t_mlx *par, t_list *map);
