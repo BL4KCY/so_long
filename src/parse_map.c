@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/14 12:12:10 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/17 10:24:11 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,18 @@ void	map_parse(char *path, t_mlx *par)
 	par->fd = get_fd(path, &line, &len);
 	while (line)
 	{
-		line[len] = '\0';
 		buff = get_next_line(par->fd);
 		par->score = check_line(line, len, par->map == NULL, buff == NULL);
+		ft_lstadd_back(&(par->map), ft_lstnew(line));
 		if (len != ft_strlen(line) || par->score == 0)
 		{
 			ft_putendl_fd("Error\n: INAVALID MAP!!!", STDERR_FILENO);
 			ft_lstclear(&(par->map), free);
+			deallocate_gnl(buff, par->fd);
 			exit(1);
 		}
-		ft_lstadd_back(&(par->map), ft_lstnew(line));
-		line = buff;
+		line = ft_strtrim(buff, "\n");
+		free(buff);
 	}
 	close(par->fd);
 }
@@ -105,4 +106,13 @@ void	flood_fill(char **map, int x, int y)
 	}
 	else
 		return ;
+}
+
+void	deallocate_gnl(void *memory, int fd)
+{
+	while (memory)
+	{
+		free(memory);
+		memory = get_next_line(fd);
+	}
 }
