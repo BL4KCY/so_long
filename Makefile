@@ -12,21 +12,11 @@ INCLUDES = includes
 LIB_INCLUDES = libft/includes
 
 #______colors______#
-GREEN = \033[0;32m
 RED = \033[0;31m
-YELLOW = \033[0;33m
-CYAN = \033[0;36m
+GREEN = \033[0;32m
 BLUE = \033[0;34m
-PURPLE = \033[0;35m
 BOLD = \033[1m
 UNDERLINE = \033[4m
-ORANGE = \033[0;33m
-LIGHT_BLUE = \033[0;34m
-LIGHT_GREEN = \033[0;32m
-LIGHT_RED = \033[0;31m
-LIGHT_YELLOW = \033[0;33m
-LIGHT_CYAN = \033[0;36m
-MAGENTA = \033[0;35m
 NC = \033[0m
 
 #______mandatory and bonus files______#
