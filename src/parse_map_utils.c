@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:36:20 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:24:04 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:25:46 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	check_path(t_mlx *par)
 		return ;
 	}
 	ft_free2d(map_cpy);
+	ft_lstclear(&(par->map), free);
 	ft_putendl_fd("Error\n: INVALID PATH !!", STDERR_FILENO);
 	ft_exit(par, INVALID_MAP);
 }
