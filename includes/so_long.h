@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melfersi <melfersi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:20 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/17 10:24:43 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,4 +145,5 @@ void	ft_free2d(char **map);
 void	flood_fill(char **map, int x, int y);
 char	**copy_map(t_mlx *par, t_list *map);
 bool	is_valid_path(t_mlx *par, char **copy);
+void	deallocate_gnl(void *memory, int fd);
 #endif
