@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:23:33 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:12:41 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_exit(t_mlx *param, int status)
 		mlx_destroy_window(param->mlx, param->win);
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
+	ft_lstclear(&(param->map), free);
 	if (status == MALLOC_ERROR || status == WIN_ERROR)
 		exit(EXIT_FAILURE);
 	exit(EXIT_SUCCESS);
