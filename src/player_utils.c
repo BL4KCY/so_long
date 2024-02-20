@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:05:31 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:24:16 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:13:14 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	move_player(int keycode, t_mlx *par)
 		d_key(par);
 	if (keycode == S)
 		s_key(par);
-	check_enemy(par);
 	if ((*par).score == 0)
 		(*par).lock = false;
 }

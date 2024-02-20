@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:47:29 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:23:51 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:33:20 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ static void	arrow_keys(int *keycode);
 
 int	keyboard(int keycode, t_mlx *param)
 {
-	if (param->lose)
-		return (0);
 	arrow_keys(&keycode);
 	if (keycode == ESC)
 		gameover(param, ESCAPE_PRESS);
-	if (!(param->won || param->lose))
+	if (!(param->won))
 		move_player(keycode, param);
 	return (0);
 }
@@ -50,6 +48,4 @@ void	set_null(t_mlx *server)
 	server->items.food.y = NULL;
 	server->items.player.x = NULL;
 	server->items.player.y = NULL;
-	server->items.enemy.x = NULL;
-	server->items.enemy.y = NULL;
 }

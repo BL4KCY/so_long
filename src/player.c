@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:19:16 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:24:21 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:33:35 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,6 @@ bool	check_door(t_mlx *par, int add, bool is_x)
 		}
 	}
 	return (true);
-}
-
-void	check_enemy(t_mlx *par)
-{
-	int	i;
-
-	i = 0;
-	while (i < (*par).items.enemy.len)
-	{
-		if ((*par).items.player.y[0] == (*par).items.enemy.y[i]
-			&& (*par).items.player.x[0] == (*par).items.enemy.x[i])
-			par->lose = true;
-		i++;
-	}
 }
 
 void	update_player(t_mlx *param)

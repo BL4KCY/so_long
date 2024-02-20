@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:50:43 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/18 16:12:41 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:29:18 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	free_items(t_mlx *param)
 	ifnfree((void **)&param->items.food.y);
 	ifnfree((void **)&param->items.player.x);
 	ifnfree((void **)&param->items.player.y);
-	ifnfree((void **)&param->items.enemy.x);
-	ifnfree((void **)&param->items.enemy.y);
 	ifnfree((void **)&param->items.door.x);
 	ifnfree((void **)&param->items.door.y);
 }
@@ -46,8 +44,6 @@ int	ft_exit(t_mlx *param, int status)
 		ft_putstr_fd("Error\nmlx_new_window() failed\n", 2);
 	else if (status == WINER)
 		ft_putstr_fd("You won!!\n", 1);
-	else if (status == LOSER)
-		ft_putstr_fd("You lose!!\n", 1);
 	else if (status == INVALID_MAP)
 		ft_putstr_fd("Error\nInvalid map\n", 2);
 	else

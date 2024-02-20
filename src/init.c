@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/20 11:39:42 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:40:08 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	item_counter(t_list *map, int *item)
 				item[1]++;
 			if (((char *)map->content)[x] == 'C')
 				item[2]++;
-			if (((char *)map->content)[x] == 'G')
-				item[3]++;
 		}
 		map = map->next;
 	}
@@ -37,30 +35,26 @@ void	item_counter(t_list *map, int *item)
 
 void	allocate_coors(t_mlx *server)
 {
-	static int	item[4];
+	static int	item[3];
 
 	item_counter(server->map, item);
 	set_null(server);
-	server->items.empty.x = malloc(item[0] * sizeof(server->items.empty.x));
-	server->items.empty.y = malloc(item[0] * sizeof(server->items.empty.y));
-	server->items.wall.x = malloc(item[1] * sizeof(server->items.empty.x));
-	server->items.wall.y = malloc(item[1] * sizeof(server->items.empty.y));
-	server->items.door.x = malloc(sizeof(server->items.empty.x));
-	server->items.door.y = malloc(sizeof(server->items.empty.y));
-	server->items.food.x = malloc(item[2] * sizeof(server->items.empty.x));
-	server->items.food.y = malloc(item[2] * sizeof(server->items.empty.y));
-	server->items.player.x = malloc(sizeof(server->items.empty.x));
-	server->items.player.y = malloc(sizeof(server->items.empty.y));
-	server->items.enemy.x = malloc(item[3] * sizeof(server->items.empty.x));
-	server->items.enemy.y = malloc(item[3] * sizeof(server->items.empty.y));
+	server->items.empty.x = malloc(item[0] * sizeof(int));
+	server->items.empty.y = malloc(item[0] * sizeof(int));
+	server->items.wall.x = malloc(item[1] * sizeof(int));
+	server->items.wall.y = malloc(item[1] * sizeof(int));
+	server->items.door.x = malloc(sizeof(int));
+	server->items.door.y = malloc(sizeof(int));
+	server->items.food.x = malloc(item[2] * sizeof(int));
+	server->items.food.y = malloc(item[2] * sizeof(int));
+	server->items.player.x = malloc(sizeof(server->items.player.x));
+	server->items.player.y = malloc(sizeof(server->items.player.y));
 	if (!server->items.empty.x || !server->items.empty.y
 		||!server->items.wall.x || !server->items.wall.y
 		|| !server->items.door.x || !server->items.door.y
 		|| !server->items.food.x || !server->items.food.y
-		|| !server->items.player.x || !server->items.player.y
-		|| !server->items.enemy.x || !server->items.enemy.y)
+		|| !server->items.player.x || !server->items.player.y)
 		ft_exit(server, MALLOC_ERROR);
-	server->items.enemy.len = 0;
 }
 
 void	init_game(t_mlx *server)
@@ -79,8 +73,6 @@ void	init_game(t_mlx *server)
 	check_path(server);
 	server->moves = false;
 	server->lock = true;
-	server->enemy_moved = false;
-	server->lose = false;
 	server->won = false;
 	server->win = mlx_new_window(server->mlx, server->width,
 			server->height, "so_long");
@@ -109,8 +101,6 @@ void	coordinate_init(t_mlx *server, t_list *map, int x, int y)
 				door_init(&server->items.door, x * ADD, y * ADD);
 			if (((char *)map->content)[x] == 'C')
 				food_init(&server->items.food, x * ADD, y * ADD);
-			if (((char *)map->content)[x] == 'G')
-				enemy_init(&server->items.enemy, x * ADD, y * ADD);
 		}
 		map = map->next;
 		y++;

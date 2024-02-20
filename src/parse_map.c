@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:52 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 11:44:12 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:26:41 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	check_line(char *line, int len, bool first, bool last)
 			object[1]++;
 		else if (line[i] == 'C')
 			object[2]++;
-		else if (line[i] != '0' && line[i] != '1'
-			&& line[i] != 'G' && line[i] != '1')
+		else if (line[i] != '0' && line[i] != '1')
 			return (false);
 	}
 	if ((last && (object[0] != 1 || object[1] != 1 || object[2] == 0))

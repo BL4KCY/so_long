@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:45:10 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:24:43 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:29:33 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_coor
 typedef struct s_items
 {
 	t_coor	player;
-	t_coor	enemy;
 	t_coor	food;
 	t_coor	empty;
 	t_coor	wall;
@@ -72,10 +71,7 @@ typedef struct s_mlx
 	int		fd;
 	int		moves;
 	bool	lock;
-	bool	lose;
 	bool	won;
-	bool	enemy_moved;
-	int		enemy_dir[2];
 }	t_mlx;
 
 typedef struct s_point
@@ -90,7 +86,6 @@ enum e_status
 	MALLOC_ERROR,
 	WIN_ERROR,
 	WINER,
-	LOSER,
 	ESCAPE_PRESS,
 	INVALID_MAP
 };
@@ -101,7 +96,6 @@ void	empty_init(t_coor *empty, int x, int y);
 void	wall_init(t_coor *wall, int x, int y);
 void	door_init(t_coor *door, int x, int y);
 void	food_init(t_coor *food, int x, int y);
-void	enemy_init(t_coor *enemy, int x, int y);
 void	init_game(t_mlx *server);
 void	coordinate_init(t_mlx *server, t_list *map, int x, int y);
 void	player_init(t_coor *player, int x, int y);
@@ -115,27 +109,15 @@ void	move_player(int keycode, t_mlx *par);
 void	check_food(t_mlx *par);
 bool	check_wall(t_mlx *par, int add, bool is_x);
 bool	check_door(t_mlx *par, int add, bool is_x);
-void	check_enemy(t_mlx *par);
 void	update_player(t_mlx *param);
 void	update_empty(t_mlx *server);
 void	update_wall(t_mlx *server);
 void	update_door(t_mlx *server);
 void	update_food(t_mlx *server);
-void	update_enemy(t_mlx *server);
 int		render_next_frame(t_mlx *server);
 void	animation(t_mlx *server);
 void	images_slayer(t_mlx *server);
 void	map_parse(char *path, t_mlx *par);
-void	move_enemy(t_mlx *server);
-bool	right(t_mlx *par, int i);
-bool	left(t_mlx *par, int i);
-bool	up(t_mlx *par, int i);
-bool	down(t_mlx *par, int i);
-bool	upleft(t_mlx *par, int i);
-bool	upright(t_mlx *par, int i);
-bool	downleft(t_mlx *par, int i);
-bool	downright(t_mlx *par, int i);
-bool	check_wall_enemy(t_mlx *par, int x, int y, int index);
 void	allocate_coors(t_mlx *server);
 void	set_null(t_mlx *server);
 void	free_items(t_mlx *param);

@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:28:56 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:23:42 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:30:40 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,4 @@ void	food_init(t_coor *food, int x, int y)
 	food->x[i] = x;
 	food->y[i] = y;
 	food->len = (++i);
-}
-
-void	enemy_init(t_coor *enemy, int x, int y)
-{
-	static int	i = 0;
-
-	if (i == 0)
-		ft_strlcpy(enemy->path, "textures/enemy/0.xpm", 100);
-	enemy->x[i] = x;
-	enemy->y[i] = y;
-	enemy->len = (++i);
 }

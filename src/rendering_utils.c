@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:14:39 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/17 10:24:26 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:42:55 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	update_empty(t_mlx *server)
 	void	*img;
 
 	i = -1;
-	while (i++ < server->items.empty.len)
+	while (++i < server->items.empty.len)
 	{
 		x = server->items.empty.x[i];
 		y = server->items.empty.y[i];
@@ -37,7 +37,7 @@ void	update_wall(t_mlx *server)
 	void	*img;
 
 	i = -1;
-	while (i++ < server->items.wall.len)
+	while (++i < server->items.wall.len)
 	{
 		x = server->items.wall.x[i];
 		y = server->items.wall.y[i];
@@ -84,28 +84,5 @@ void	update_food(t_mlx *server)
 				server->items.wall.img, 0, 0);
 		else
 			mlx_put_image_to_window(server->mlx, server->win, img, x, y);
-	}
-}
-
-void	update_enemy(t_mlx *server)
-{
-	static int	c = '0';
-	int			j;
-
-	if (c <= '4')
-		server->items.enemy.path[15] = c++;
-	else
-		c = '0';
-	j = -1;
-	if (server->enemy_moved)
-		mlx_put_image_to_window(server->mlx, server->win,
-			server->items.empty.img, server->enemy_dir[0],
-			server->enemy_dir[1]);
-	server->enemy_moved = false;
-	while (++j < server->items.enemy.len)
-	{
-		mlx_put_image_to_window(server->mlx, server->win,
-			server->items.enemy.img, server->items.enemy.x[j],
-			server->items.enemy.y[j]);
 	}
 }
