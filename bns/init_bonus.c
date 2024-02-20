@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:46:21 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/20 11:42:02 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:16:48 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ void	allocate_coors(t_mlx *server)
 
 	item_counter(server->map, item);
 	set_null(server);
-	server->items.empty.x = malloc(item[0] * sizeof(server->items.empty.x));
-	server->items.empty.y = malloc(item[0] * sizeof(server->items.empty.y));
-	server->items.wall.x = malloc(item[1] * sizeof(server->items.empty.x));
-	server->items.wall.y = malloc(item[1] * sizeof(server->items.empty.y));
-	server->items.door.x = malloc(sizeof(server->items.empty.x));
-	server->items.door.y = malloc(sizeof(server->items.empty.y));
-	server->items.food.x = malloc(item[2] * sizeof(server->items.empty.x));
-	server->items.food.y = malloc(item[2] * sizeof(server->items.empty.y));
-	server->items.player.x = malloc(sizeof(server->items.empty.x));
-	server->items.player.y = malloc(sizeof(server->items.empty.y));
-	server->items.enemy.x = malloc(item[3] * sizeof(server->items.empty.x));
-	server->items.enemy.y = malloc(item[3] * sizeof(server->items.empty.y));
+	server->items.empty.x = malloc(item[0] * sizeof(int));
+	server->items.empty.y = malloc(item[0] * sizeof(int));
+	server->items.wall.x = malloc(item[1] * sizeof(int));
+	server->items.wall.y = malloc(item[1] * sizeof(int));
+	server->items.door.x = malloc(sizeof(int));
+	server->items.door.y = malloc(sizeof(int));
+	server->items.food.x = malloc(item[2] * sizeof(int));
+	server->items.food.y = malloc(item[2] * sizeof(int));
+	server->items.player.x = malloc(sizeof(int));
+	server->items.player.y = malloc(sizeof(int));
+	server->items.enemy.x = malloc(item[3] * sizeof(int));
+	server->items.enemy.y = malloc(item[3] * sizeof(int));
 	if (!server->items.empty.x || !server->items.empty.y
 		||!server->items.wall.x || !server->items.wall.y
 		|| !server->items.door.x || !server->items.door.y

@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:14:39 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/20 10:00:31 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:18:45 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	update_empty(t_mlx *server)
 	void	*img;
 
 	i = -1;
-	while (i++ < server->items.empty.len)
+	while (++i < server->items.empty.len)
 	{
 		x = server->items.empty.x[i];
 		y = server->items.empty.y[i];
@@ -37,7 +37,7 @@ void	update_wall(t_mlx *server)
 	void	*img;
 
 	i = -1;
-	while (i++ < server->items.wall.len)
+	while (++i < server->items.wall.len)
 	{
 		x = server->items.wall.x[i];
 		y = server->items.wall.y[i];
