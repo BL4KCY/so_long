@@ -6,7 +6,7 @@
 /*   By: melfersi <melfersi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 08:20:45 by melfersi          #+#    #+#             */
-/*   Updated: 2024/02/20 15:13:42 by melfersi         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:34:54 by melfersi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	render_next_frame(t_mlx *server)
 
 void	animation(t_mlx *server)
 {
-	static int	f1 = 600;
+	static int	f1 = 1200;
 
-	if (f1++ == 600)
+	if (f1++ == 1200)
 	{
 		update_food(server);
 		f1 = 0;
